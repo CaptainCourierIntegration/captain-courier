@@ -1,7 +1,7 @@
 /** Resolver
 {
-    "depends": [],
-    "searchPath": ""
+    "depends": [ "citext" ],
+    "searchPath": "captain, extension"
 }
  */
 
@@ -14,9 +14,9 @@ CACHE 1;
 
 
 CREATE TABLE "Item" (
-	id int NOT NULL,
+	id int NOT NULL DEFAULT nextval("seq_Item_id"::regclass),
 	"parcelId" int NOT NULL,
-	name text NOT NULL,
+	name citext NOT NULL,
 	quantity int NOT NULL,
 	CONSTRAINT "pk_Item" primary key (id),
 	CONSTRAINT "fk_Item_parcelId" FOREIGN KEY ("parcelId") REFERENCES "Parcel" (id)

@@ -1,5 +1,8 @@
 /** Resolver
 {
+	"depends": ["captain", "citext"],
+	"searchPath": "captain, extension"
+
 }
  */
 
@@ -19,8 +22,8 @@ CREATE TABLE "Consignment" (
 	"deliveryAddress" int,
 	"deliveryContact" int,
 	"deliveryTime" timestamp NOT NULL,
-	"contractNumber" text NOT NULL,
-	"serviceCode" text NOT NULL,
+	"contractNumber" citext NOT NULL,
+	"serviceCode" citext NOT NULL,
 	CONSTRAINT "pk_Consignment" PRIMARY KEY (id)
 );
 

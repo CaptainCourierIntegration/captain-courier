@@ -1,5 +1,7 @@
 /** Resolver
 {
+	"depends": ["captain"],
+	"searchPath": "captain"
 }
  */
 
