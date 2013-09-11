@@ -1,4 +1,4 @@
-/** Resolver
+/** resolver
 {
 	"depends": ["captain"],
 	"searchPath": "captain"

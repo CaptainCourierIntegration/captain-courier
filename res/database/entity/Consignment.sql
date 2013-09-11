@@ -1,8 +1,7 @@
-/** Resolver
+/** resolver
 {
 	"depends": ["captain", "citext"],
 	"searchPath": "captain, extension"
-
 }
  */
 
