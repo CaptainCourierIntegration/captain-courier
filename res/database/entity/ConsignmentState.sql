@@ -22,7 +22,7 @@ CREATE SEQUENCE "seq_ConsignmentState_order"
 CREATE TABLE "ConsignmentState" (
     "id" int NOT NULL DEFAULT nextval('"seq_ConsignmentState_id"'::regclass),
 	"consignmentId" int NOT NULL,
-	"order" int NOT NULL DEFAULT nextval('"seq_ConsignmentState_order"'::regclass),
+	"order" int NOT NULL DEFAULT nextval('"seq_ConsignmentState_order"'::regclass), /* for sorting the events into order */
 	"state" consignmentstate NOT NULL DEFAULT ('active'::consignmentstate),
 	"timestamp" timestamp NOT NULL DEFAULT now(),
 	"details" hstore NOT NULL,
