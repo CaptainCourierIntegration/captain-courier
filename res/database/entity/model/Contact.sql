@@ -24,5 +24,5 @@ CREATE TABLE "Contact" (
 ALTER SEQUENCE "seq_Contact_id" OWNED BY "Contact"."id";
 
 CREATE INDEX "idx_Contact_businessName" ON "Contact" USING GIN("businessName");
-CREATE INDEX "idx_Contact_name" ON "Contact" USING GIN("name");
-CREATE INDEX "idx_Contact_email" ON "Contact" USING GIN("email");
+CREATE INDEX "idx_Contact_name" ON "Contact" USING GIN("name"); /* todo: there is a better strategy than GIN */
+CREATE INDEX "idx_Contact_email" ON "Contact" USING GIN("email"); /* todo: there is a better strategy than GIN */
