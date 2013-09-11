@@ -1,7 +1,7 @@
 /** resolver
 {
-	"depends": [ "captain", "consignmentstate" ],
-	"searchPath": "captain"
+	"depends": [ "captain", "consignmentstate", "hstore" ],
+	"searchPath": "captain, extension"
 }
  */
 
@@ -20,10 +20,10 @@ CREATE SEQUENCE "seq_ConsignmentState_order"
 	CACHE 1;
 
 CREATE TABLE "ConsignmentState" (
-    "id" int NOT NULL DEFAULT nextval("seq_ConsignmentState_id"::regclass),
+    "id" int NOT NULL DEFAULT nextval('"seq_ConsignmentState_id"'::regclass),
 	"consignmentId" int NOT NULL,
-	"order" int NOT NULL DEFAULT nextval("seq_ConsignmentState_order"::regclass),
-	"state" consignmentstate NOT NULL DEFAULT ("active"::consignmentstate),
+	"order" int NOT NULL DEFAULT nextval('"seq_ConsignmentState_order"'::regclass),
+	"state" consignmentstate NOT NULL DEFAULT ('active'::consignmentstate),
 	"timestamp" timestamp NOT NULL DEFAULT now(),
 	"details" hstore NOT NULL,
     CONSTRAINT "pk_ConsignmentState" PRIMARY KEY (id),

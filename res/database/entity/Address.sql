@@ -14,7 +14,7 @@ CACHE 1;
 
 CREATE TABLE "Address" (
 	id int NOT NULL DEFAULT nextval(
-		'"seq_Address_Id"' :: regclass),
+		'"seq_Address_id"' :: regclass),
 	name citext NOT NULL,
 	line1 citext NOT NULL,
 	line2 citext NOT NULL,

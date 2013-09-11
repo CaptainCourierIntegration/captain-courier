@@ -1,6 +1,6 @@
 /** resolver
 {
-	"depends": ["captain"],
+	"depends": ["captain", "Consignment" ],
 	"searchPath": "captain"
 }
  */
