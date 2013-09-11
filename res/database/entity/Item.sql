@@ -1,9 +1,13 @@
-/** Resolver
+/** resolver
 {
-    "depends": [ "citext" ],
+    "depends": [
+    	"captain",
+    	"citext",
+    	"Parcel"
+   	],
     "searchPath": "captain, extension"
 }
- */
+*/
 
 CREATE SEQUENCE "seq_Item_id"
 START WITH 1
@@ -14,7 +18,7 @@ CACHE 1;
 
 
 CREATE TABLE "Item" (
-	id int NOT NULL DEFAULT nextval("seq_Item_id"::regclass),
+	id int NOT NULL DEFAULT nextval('"seq_Item_id"'::regclass),
 	"parcelId" int NOT NULL,
 	name citext NOT NULL,
 	quantity int NOT NULL,

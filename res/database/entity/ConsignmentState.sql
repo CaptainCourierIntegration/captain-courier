@@ -25,6 +25,7 @@ CREATE TABLE "ConsignmentState" (
 	"order" int NOT NULL DEFAULT nextval("seq_ConsignmentState_order"::regclass),
 	"state" consignmentstate NOT NULL DEFAULT ("active"::consignmentstate),
 	"timestamp" timestamp NOT NULL DEFAULT now(),
+	"details" hstore NOT NULL,
     CONSTRAINT "pk_ConsignmentState" PRIMARY KEY (id),
 	CONSTRAINT "fk_ConsignmentState_consignmentId" FOREIGN KEY ("consignmentId") REFERENCES "Consignment" ("id")
 );
