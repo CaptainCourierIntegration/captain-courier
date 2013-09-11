@@ -1,6 +1,6 @@
 /** resolver
 {
-    "depends": ["captain", "citext", "Country"],
+    "depends": ["captain", "citext"],
     "searchPath": "captain, extension"
 }
 */
