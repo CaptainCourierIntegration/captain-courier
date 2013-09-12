@@ -14,7 +14,7 @@ CREATE SEQUENCE "seq_AbortStatus_id"
 	CACHE 1
 
 CREATE TABLE "AbortStatus" (
-	"id" int NOT NULL,
+	"id" int NOT NULL DEFAULT nextval('"seq_AbortStatus_id"'::regclass),
 	"shipmentId" int NOT NULL,
 	"status" abortstatus_status NOT NULL,
 	"message" citext,
@@ -23,3 +23,5 @@ CREATE TABLE "AbortStatus" (
 );
 
 ALTER SEQUENCE "seq_AbortStatus_id" OWNED BY "AbortStatus"."id";
+
+CREATE INDEX "idx_AbortStatus_shipmentId" ON "AbortStatus" USING BTREE("shipmentId");

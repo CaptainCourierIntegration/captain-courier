@@ -25,3 +25,4 @@ CREATE TABLE "CustomsInfo" (
 	"createdTimestamp" timestamp DEFAULT now()
 );
 
+ALTER SEQUENCE "seq_CustomsInfo_id" OWNED BY "CustomsInfo"."id";
