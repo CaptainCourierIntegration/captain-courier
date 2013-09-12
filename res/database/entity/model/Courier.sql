@@ -13,7 +13,7 @@ CREATE SEQUENCE "seq_Courier_id"
 	NO MAXVALUE
 	CACHE 1;
 
-CREATE TABLE Courier (
+CREATE TABLE "Courier" (
 	"id" int DEFAULT nextval('"seq_Courier_id"'::regclass),
 	"name" citext NOT NULL,
 	CONSTRAINT "pk_Courier_id" PRIMARY KEY ("id"),
@@ -21,5 +21,3 @@ CREATE TABLE Courier (
 );
 
 ALTER SEQUENCE "seq_Courier_id" OWNED BY "Courier"."id";
-
-CREATE INDEX "idx_Courier_name" ON "Courier" USING GIN("name");

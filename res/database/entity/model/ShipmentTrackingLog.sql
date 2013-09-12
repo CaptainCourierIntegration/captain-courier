@@ -23,4 +23,3 @@ CREATE TABLE "ShipmentTrackingLog" (
 ALTER SEQUENCE "seq_ShipmentTrackingLog_id" OWNED BY "ShipmentTrackingLog"."id";
 
 CREATE INDEX "idx_ShipmentTrackingLog_shipmentId" ON "ShipmentTrackingLog" USING BTREE ("shipmentId");
-CREATE INDEX "idx_ShipmentTrackingLog_trackingNumber" ON "ShipmentTrackingLog" USING GIN ("trackingNumber");

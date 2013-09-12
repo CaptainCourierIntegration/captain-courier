@@ -12,14 +12,14 @@ CREATE SEQUENCE "seq_Quote_id"
 	CACHE 1;
 
 
-CREATE TABLE Quote (
+CREATE TABLE "Quote" (
 	"id" int DEFAULT nextval('"seq_Quote_id"'::regclass),
 	"serviceId" int,
 	"quote" decimal(8, 2) NOT NULL,
 	"collectionTimestamp" timestamp NOT NULL,
 	CONSTRAINT "pk_Quote" PRIMARY KEY ("id"),
-	CONSTRAINT "fk_Quote_serviceId" FOREIGN KEY "serviceId" REFERENCES "Service" ("id")
-}
+	CONSTRAINT "fk_Quote_serviceId" FOREIGN KEY ("serviceId") REFERENCES "Service" ("id")
+);
 
 ALTER SEQUENCE "seq_Quote_id" OWNED BY "Quote"."id";
 

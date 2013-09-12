@@ -12,13 +12,13 @@ CREATE SEQUENCE "seq_Service_id"
 	NO MAXVALUE
 	CACHE 1;
 
-CREATE TABLE Service (
+CREATE TABLE "Service" (
 	"id" int DEFAULT nextval('"seq_Service_id"'::regclass),
 	"courierId" int,
 	"name" citext NOT NULL,
 	"serviceCode" text NOT NULL,
 	CONSTRAINT "pk_Service" PRIMARY KEY ("id"),
-	CONSTRAINT "fk_Service_courierId" FOREIGN KEY ("courierId") REFERENCES "Courier" ("name"),
+	CONSTRAINT "fk_Service_courierId" FOREIGN KEY ("courierId") REFERENCES "Courier" ("id"),
 	CONSTRAINT "unique_Service_name" UNIQUE ("serviceCode")
 );
 
