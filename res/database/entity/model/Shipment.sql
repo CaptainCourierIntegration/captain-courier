@@ -3,7 +3,7 @@
 	"depends": ["captain", "Address", "citext"],
 	"searchPath": "captain, extension"
 }
- */
+*/
 
 
 CREATE SEQUENCE "seq_Shipment_id"
