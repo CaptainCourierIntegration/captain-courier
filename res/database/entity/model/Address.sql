@@ -13,16 +13,19 @@ NO MAXVALUE
 CACHE 1;
 
 CREATE TABLE "Address" (
-	id int NOT NULL DEFAULT nextval(
-		'"seq_Address_id"' :: regclass),
-	name citext NOT NULL,
+	"id" int NOT NULL DEFAULT nextval('"seq_Address_id"' :: regclass),
+	"companyName" citext,
+	"name" citext,
+	"phone" citext,
+	"email" citext,
 	line1 citext NOT NULL,
-	line2 citext NOT NULL,
-	line3 citext NOT NULL,
-	line4 citext NOT NULL,
-	line5 citext NOT NULL,
+	line2 citext,
+	line3 citext,
+	line4 citext,
+	line5 citext,
 	postcode citext NOT NULL,
 	cc character(2) NOT NULL,
+	"createdTimestamp" timestamp DEFAULT now(),
 	CONSTRAINT "pk_Address" PRIMARY KEY (id),
 	CONSTRAINT "fk_Address_cc" FOREIGN KEY ("cc") REFERENCES "Country" (cc) ON UPDATE CASCADE ON DELETE RESTRICT
 );
