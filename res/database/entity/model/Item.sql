@@ -26,4 +26,6 @@ CREATE TABLE "Item" (
 	CONSTRAINT "fk_Item_parcelId" FOREIGN KEY ("parcelId") REFERENCES "Parcel" (id)
 );
 
+ALTER SEQUENCE "seq_Item_id" OWNED BY "Item"."id";
+
 CREATE INDEX "idx_Item_parcelId" ON "Item" USING BTREE ("parcelId");

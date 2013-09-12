@@ -1,6 +1,6 @@
 /** resolver
 {
-	"depends": ["captain", "abortstatus_status", "citext"],
+	"depends": ["captain", "Shipment", "abortstatus_status", "citext"],
 	"searchPath": "captain, extension"
 }
 */
@@ -11,7 +11,7 @@ CREATE SEQUENCE "seq_AbortStatus_id"
 	INCREMENT BY 1
 	NO MINVALUE
 	NO MAXVALUE
-	CACHE 1
+	CACHE 1;
 
 CREATE TABLE "AbortStatus" (
 	"id" int NOT NULL DEFAULT nextval('"seq_AbortStatus_id"'::regclass),

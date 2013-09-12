@@ -1,7 +1,7 @@
-/** Resolver
+/** resolver
 {
-    "depends": [],
-    "searchPath": ""
+    "depends": ["captain", "ShipmentTrackingLog", "citext"],
+    "searchPath": "captain, extension"
 }
 */
 

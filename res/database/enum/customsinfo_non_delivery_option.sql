@@ -5,10 +5,10 @@
 }
 */
 
-CREATE TYPE "customsinfo_non_delivery_options" AS ENUM (
+CREATE TYPE "customsinfo_non_delivery_option" AS ENUM (
 	'abandon',
-	'return',
+	'return'
 );
 
-CREATE CAST (text AS "customsinfo_non_delivery_options") WITH INOUT AS IMPLICIT;
-CREATE CAST ("customsinfo_non_delivery_options" AS text) WITH INOUT AS IMPLICIT;
+CREATE CAST (text AS "customsinfo_non_delivery_option") WITH INOUT AS IMPLICIT;
+CREATE CAST ("customsinfo_non_delivery_option" AS text) WITH INOUT AS IMPLICIT;

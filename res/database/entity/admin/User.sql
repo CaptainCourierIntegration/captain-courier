@@ -1,7 +1,7 @@
 /** resolver
 {
-    "depends": ["captain"],
-    "searchPath": "captain"
+    "depends": ["captain", "Account", "Authentication", "citext", "uuid-ossp"],
+    "searchPath": "captain, extension"
 }
 */
 
@@ -15,7 +15,7 @@ CREATE SEQUENCE "seq_User_id"
 CREATE TABLE "User" (
     "id" int NOT NULL DEFAULT nextval('"seq_User_id"'::regclass),
 	"accountId" int NOT NULL,
-	"email" citext NOT NULL,
+	"email" text NOT NULL,
 	"authenticationId" int NOT NULL,
 	"apiKey" uuid NOT NULL DEFAULT uuid_generate_v4(),
     CONSTRAINT "pk_User" PRIMARY KEY (id),
@@ -26,14 +26,8 @@ CREATE TABLE "User" (
 ALTER SEQUENCE "seq_User_id" OWNED BY "User"."id";
 
 CREATE INDEX "idx_User_accountId" ON "User" USING BTREE ("accountId");
-CREATE INDEX "idx_User_email" ON "User" USING GIN ("email");
 CREATE INDEX "idx_User_authenticationId" ON "User" USING BTREE ("authenticationId");
 CREATE INDEX "idx_User_apiKey" ON "User" USING BTREE("apiKey");
-
-
-
-
-
 
 
 

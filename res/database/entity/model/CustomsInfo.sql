@@ -1,6 +1,6 @@
 /** resolver
 {
-    "depends" : [ "captain", "customsinfo_content_type", "customsinfo_non_delivery_option, "customsinfo_restriction_type", "citext" ],
+    "depends" : [ "captain", "customsinfo_content_type", "customsinfo_non_delivery_option", "customsinfo_restriction_type", "citext" ],
     "searchPath" : "captain, extension"
 }
 */
