@@ -1,2 +1,3 @@
 src/Symfony/app/cache/
 src/Symfony/app/logs/
+*._*
