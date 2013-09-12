@@ -16,10 +16,8 @@ CACHE 1;
 CREATE TABLE "Consignment" (
 	id int DEFAULT nextval('"seq_Consignment_id"' :: regclass),
 	"collectionAddressId" int NOT NULL,
-	"collectionContactId" int NOT NULL,
 	"collectionTime" timestamp NOT NULL,
 	"deliveryAddressId" int NOT NULL,
-	"deliveryContactId" int NOT NULL,
 	"deliveryTime" timestamp NOT NULL,
 	"contractNumber" citext NOT NULL,
 	"serviceCode" citext NOT NULL,

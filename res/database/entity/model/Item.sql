@@ -16,8 +16,12 @@ CACHE 1;
 CREATE TABLE "Item" (
 	id int NOT NULL DEFAULT nextval('"seq_Item_id"'::regclass),
 	"parcelId" int NOT NULL,
-	name citext NOT NULL,
+	description citext NOT NULL,
 	quantity int NOT NULL,
+	weight int NOT NULL,
+	"originCountryCode" character(2),
+	"hsTarrifNumber" citext,
+	"createdTimestamp" timestamp DEFAULT now(),
 	CONSTRAINT "pk_Item" primary key (id),
 	CONSTRAINT "fk_Item_parcelId" FOREIGN KEY ("parcelId") REFERENCES "Parcel" (id)
 );
