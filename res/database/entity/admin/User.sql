@@ -28,6 +28,3 @@ ALTER SEQUENCE "seq_User_id" OWNED BY "User"."id";
 CREATE INDEX "idx_User_accountId" ON "User" USING BTREE ("accountId");
 CREATE INDEX "idx_User_authenticationId" ON "User" USING BTREE ("authenticationId");
 CREATE INDEX "idx_User_apiKey" ON "User" USING BTREE("apiKey");
-
-
-

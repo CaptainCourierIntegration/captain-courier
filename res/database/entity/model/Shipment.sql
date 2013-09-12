@@ -16,9 +16,9 @@ CACHE 1;
 CREATE TABLE "Shipment" (
 	id int DEFAULT nextval('"seq_Shipment_id"' :: regclass),
 	"collectionAddressId" int NOT NULL,
-	"collectionTime" timestamp NOT NULL,
+	"collectionTime" tsrange NOT NULL,
 	"deliveryAddressId" int NOT NULL,
-	"deliveryTime" timestamp NOT NULL,
+	"deliveryTime" tsrange NOT NULL,
 	"contractNumber" citext NOT NULL,
 	"serviceCode" citext NOT NULL,
 	CONSTRAINT "pk_Shipment" PRIMARY KEY (id),
