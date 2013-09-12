@@ -1,5 +1,0 @@
-_assetic:
-    resource: .
-    type: assetic
-_app:
-    resource: /home/captain/CaptainCourier/captain-courier/src/Symfony/app/config/routing_dev.yml
