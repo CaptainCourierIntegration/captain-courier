@@ -5,7 +5,7 @@
 }
 */
 
-CREATE TYPE "consignmentstate" AS ENUM (
+CREATE TYPE "shipmentstate" AS ENUM (
 	'active',
 	'cancelled',
 	'collected',
@@ -14,5 +14,5 @@ CREATE TYPE "consignmentstate" AS ENUM (
 	'undelivered'
 );
 
-CREATE CAST (text AS "consignmentstate") WITH INOUT AS IMPLICIT;
-CREATE CAST ("consignmentstate" AS text) WITH INOUT AS IMPLICIT;
+CREATE CAST (text AS "shipmentstate") WITH INOUT AS IMPLICIT;
+CREATE CAST ("shipmentstate" AS text) WITH INOUT AS IMPLICIT;

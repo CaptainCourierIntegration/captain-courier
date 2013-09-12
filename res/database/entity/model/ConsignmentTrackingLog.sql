@@ -1,26 +1,26 @@
 /** resolver
 {
-    "depends" : [ "captain", "Consignment", "citext" ],
+    "depends" : [ "captain", "Shipment", "citext" ],
     "searchPath" : "captain, extension"
 }
 */
 
-CREATE SEQUENCE "seq_ConsignmentTrackingLog_id"
+CREATE SEQUENCE "seq_ShipmentTrackingLog_id"
     START WITH 1
     INCREMENT BY 1
     NO MAXVALUE
     NO MINVALUE
     CACHE 1;
 
-CREATE TABLE "ConsignmentTrackingLog" (
-    "id" int NOT NULL DEFAULT nextval('"seq_ConsignmentTrackingLog_id"'::regclass),
-	"consignmentId" int NOT NULL,
+CREATE TABLE "ShipmentTrackingLog" (
+    "id" int NOT NULL DEFAULT nextval('"seq_ShipmentTrackingLog_id"'::regclass),
+	"shipmentId" int NOT NULL,
 	"trackingNumber" citext NOT NULL,
-    CONSTRAINT "pk_ConsignmentTrackingLog" PRIMARY KEY (id),
-	CONSTRAINT "fk_ConsignmentTrackingLog_consignmentId" FOREIGN KEY ("consignmentId") REFERENCES "Consignment" ("id")
+    CONSTRAINT "pk_ShipmentTrackingLog" PRIMARY KEY (id),
+	CONSTRAINT "fk_ShipmentTrackingLog_shipmentId" FOREIGN KEY ("shipmentId") REFERENCES "Shipment" ("id")
 );
 
-ALTER SEQUENCE "seq_ConsignmentTrackingLog_id" OWNED BY "ConsignmentTrackingLog"."id";
+ALTER SEQUENCE "seq_ShipmentTrackingLog_id" OWNED BY "ShipmentTrackingLog"."id";
 
-CREATE INDEX "idx_ConsignmentTrackingLog_consignmentId" ON "ConsignmentTrackingLog" USING BTREE ("consignmentId");
-CREATE INDEX "idx_ConsignmentTrackingLog_trackingNumber" ON "ConsignmentTrackingLog" USING GIN ("trackingNumber");
+CREATE INDEX "idx_ShipmentTrackingLog_shipmentId" ON "ShipmentTrackingLog" USING BTREE ("shipmentId");
+CREATE INDEX "idx_ShipmentTrackingLog_trackingNumber" ON "ShipmentTrackingLog" USING GIN ("trackingNumber");
