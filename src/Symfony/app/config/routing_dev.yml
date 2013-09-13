@@ -27,4 +27,8 @@ address:
 
 parcel:
     type: rest
-    resource: "CaptainCourier\\CaptainBundle\\Controller\\ParcelController"    
+    resource: "CaptainCourier\\CaptainBundle\\Controller\\ParcelController"
+
+item:
+    type: rest
+    resource: "CaptainCourier\\CaptainBundle\\Controller\\ItemController"
