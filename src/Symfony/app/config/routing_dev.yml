@@ -20,3 +20,4 @@ _acme_demo:
 CaptainCourierCaptainBundle:
     resource: "@CaptainCourierCaptainBundle/Controller"
     type: annotation
+
