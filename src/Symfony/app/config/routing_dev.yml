@@ -17,6 +17,10 @@ _main:
 _acme_demo:
     resource: "@AcmeDemoBundle/Resources/config/routing.yml"
 
-CaptainCourierCaptainBundle:
-    resource: "@CaptainCourierCaptainBundle/Controller"
-    type: annotation
+# CaptainCourierCaptainBundle:
+#     resource: "@CaptainCourierCaptainBundle/Controller"
+#     type: annotation
+
+address:
+    type: rest
+    resource: "CaptainCourier\\CaptainBundle\\Controller\\AddressController"
