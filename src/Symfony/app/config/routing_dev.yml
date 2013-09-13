@@ -24,3 +24,7 @@ _acme_demo:
 address:
     type: rest
     resource: "CaptainCourier\\CaptainBundle\\Controller\\AddressController"
+
+parcel:
+    type: rest
+    resource: "CaptainCourier\\CaptainBundle\\Controller\\ParcelController"    
