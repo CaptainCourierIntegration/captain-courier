@@ -3,7 +3,12 @@
 namespace CaptainCourier\CaptainBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
+use FOS\RestBundle\Controller\Annotations\RouteResource;
 
+// TODO: fix routing makes this goto customsinfos (no 's' at end)
+/**
+ * @RouteResource("CustomsInfo")
+ */
 class CustomsInfoController extends RestController
 {
 	private $response;
