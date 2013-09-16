@@ -1,0 +1,21 @@
+<html>
+	<head>
+
+		<script 
+			type="text/javascript" 
+			src="http://code.jquery.com/jquery-2.0.3.min.js">
+		</script>
+
+	</head>
+
+	<body>
+
+	<script type="text/javascript">
+		result = $.get("http://192.168.2.18:8080/customsinfos/a", function(l){console.log(l)}, "json")
+		console.log(result)
+		$("body").append(result)
+	</script>
+
+	</body>
+
+</html>
