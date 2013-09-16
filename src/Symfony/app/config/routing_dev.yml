@@ -21,6 +21,9 @@ _acme_demo:
 #     resource: "@CaptainCourierCaptainBundle/Controller"
 #     type: annotation
 
+logout:
+    path:   /addresses/logout
+
 address:
     type: rest
     resource: "CaptainCourier\\CaptainBundle\\Controller\\AddressController"
