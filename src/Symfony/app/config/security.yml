@@ -30,10 +30,21 @@ security:
             logout:
                 path:   _demo_logout
                 target: _demo
+
+
+        my_private_area:
+            pattern: ^/addresses
+            anonymous: ~
+            http_basic:
+                realm: "My Private Area"
+            logout: 
+                path: /addresses/logout
+                target: /addresses
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
 
     access_control:
         - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
+        - { path: ^/addresses, roles: ROLE_USER }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
