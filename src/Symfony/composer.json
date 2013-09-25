@@ -20,7 +20,8 @@
         "sensio/generator-bundle": "2.3.*",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/rest-bundle": "*",
-        "jms/serializer-bundle": "*"
+        "jms/serializer-bundle": "*",
+        "squareproton/bond": "*"
     },
     "scripts": {
         "post-install-cmd": [
@@ -39,7 +40,8 @@
         ]
     },
     "config": {
-        "bin-dir": "bin"
+        "bin-dir": "bin",
+        "process-timeout": 10000
     },
     "minimum-stability": "dev",
     "extra": {
