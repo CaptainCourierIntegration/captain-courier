@@ -1,27 +1,30 @@
 
 $(document).ready(function() {
 
+	request();
 
-	$("#get").on("click", ["GET"], request);
-	$("#post").on("click", ["POST"], request);
-
-	$("#clear").on("click", function() {
-		$("#response").val("<no request>");
-	});
 });
 
-function request(event)
+function request()
 {
-	var host = $("#host").val();
-	var url =  $("#url").val();
-	var type = event.data[0];
+	var data = {
+		name: "joseph",
+		email: "joseph@omlet.co.uk",
+		line1: "Omlet ltd",
+		line2: "Tuthill Park",
+		town: "Wardington",
+		region: "Oxfordshire",
+		postcode: "OX17 1RR",
+		countryCode: "GB"
+	};
 
-	var realurl = "http://" + host + url;
-	console.log(type + " " + realurl);
 	result = $.ajax({
-		type: type,
-		url: realurl,
-		data: {},
+		type: "POST",
+		url: "http://192.168.2.18:8000/addresses",
+		contentType: "json",
+		data: JSON.stringify(data),
+		processData: false,
+		timeout: 1000000,
 		success: handleResponse,
 		error: handleError
 	});
@@ -30,10 +33,12 @@ function request(event)
 
 function handleResponse(response)
 {
-	$("#response").text(JSON.stringify(response));
+	console.log(response);
+	$("#response").text(response);
 }
 
 function handleError(response)
 {
-	$("#response").text(JSON.stringify(response));
+	console.log(response);
+	$("#response").text(response);
 }
