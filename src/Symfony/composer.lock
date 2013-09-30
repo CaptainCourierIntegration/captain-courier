@@ -3,8 +3,70 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "84ef62b4260bb06981a0630c26144ea5",
+    "hash": "004329e9668b42d95bd2eeecd87c3114",
     "packages": [
+        {
+            "name": "captain-courier/cidr",
+            "version": "dev-develop",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CaptainCourierIntegration/captain-courier-cidr.git",
+                "reference": "20a26d776f9358dc21d06c0235021376e2f5b52b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CaptainCourierIntegration/captain-courier-cidr/zipball/20a26d776f9358dc21d06c0235021376e2f5b52b",
+                "reference": "20a26d776f9358dc21d06c0235021376e2f5b52b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "squareproton/bond": "dev-develop",
+                "symfony/config": "*",
+                "symfony/dependency-injection": "*",
+                "symfony/proxy-manager-bridge": "*",
+                "symfony/validator": "*",
+                "symfony/yaml": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Cidr": "src/",
+                    "Curl": "lib/"
+                },
+                "files": [
+                    "src/Cidr/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Joseph",
+                    "email": "joseph@captaincourier.org",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Peter",
+                    "email": "peter@captaincourier.org",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Courier Integration Done Right!",
+            "homepage": "http://captaincourier.org",
+            "keywords": [
+                "courier",
+                "integration",
+                "parcels",
+                "shipping",
+                "tracking"
+            ],
+            "time": "2013-09-30 16:14:46"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.1.2",
@@ -78,16 +140,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.1",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "2c9761ff1d13e188d5f7378066c1ce2882d7a336"
+                "reference": "d0e4447707a064a5814b18cb0dcc2f24185f6179"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/2c9761ff1d13e188d5f7378066c1ce2882d7a336",
-                "reference": "2c9761ff1d13e188d5f7378066c1ce2882d7a336",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/d0e4447707a064a5814b18cb0dcc2f24185f6179",
+                "reference": "d0e4447707a064a5814b18cb0dcc2f24185f6179",
                 "shasum": ""
             },
             "require": {
@@ -143,7 +205,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2013-08-07 16:04:25"
+            "time": "2013-09-26 19:23:25"
         },
         {
             "name": "doctrine/collections",
@@ -292,12 +354,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "2addbddbc7134bd775bbb1f30d172d1271a6afb0"
+                "reference": "59c310ba2aeea882c0fde6f47462462ba9ce9878"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2addbddbc7134bd775bbb1f30d172d1271a6afb0",
-                "reference": "2addbddbc7134bd775bbb1f30d172d1271a6afb0",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/59c310ba2aeea882c0fde6f47462462ba9ce9878",
+                "reference": "59c310ba2aeea882c0fde6f47462462ba9ce9878",
                 "shasum": ""
             },
             "require": {
@@ -347,7 +409,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-09-08 13:25:53"
+            "time": "2013-09-26 21:18:35"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -672,12 +734,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "9d98ec8c62a28cfa49b074f5cdd3fb7f417c5118"
+                "reference": "445b22269af82ff199c7422b5950e11b6545148e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/9d98ec8c62a28cfa49b074f5cdd3fb7f417c5118",
-                "reference": "9d98ec8c62a28cfa49b074f5cdd3fb7f417c5118",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/445b22269af82ff199c7422b5950e11b6545148e",
+                "reference": "445b22269af82ff199c7422b5950e11b6545148e",
                 "shasum": ""
             },
             "require": {
@@ -738,7 +800,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2013-09-24 15:16:52"
+            "time": "2013-09-30 16:13:16"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -935,12 +997,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "5476b5fec82feaf2b0787a3e386aea4405d169b2"
+                "reference": "ad2153e3aeaa420f50cd97b3551d476509c1b68d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/5476b5fec82feaf2b0787a3e386aea4405d169b2",
-                "reference": "5476b5fec82feaf2b0787a3e386aea4405d169b2",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/ad2153e3aeaa420f50cd97b3551d476509c1b68d",
+                "reference": "ad2153e3aeaa420f50cd97b3551d476509c1b68d",
                 "shasum": ""
             },
             "require": {
@@ -994,7 +1056,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2013-09-18 06:27:06"
+            "time": "2013-09-26 06:27:00"
         },
         {
             "name": "jms/serializer-bundle",
@@ -1143,12 +1205,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "ca18e81f79484c552b6bac0e40e4ee3fd0161000"
+                "reference": "df90f919b73e2e848d767a372caf9ca036877bf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/ca18e81f79484c552b6bac0e40e4ee3fd0161000",
-                "reference": "ca18e81f79484c552b6bac0e40e4ee3fd0161000",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/df90f919b73e2e848d767a372caf9ca036877bf6",
+                "reference": "df90f919b73e2e848d767a372caf9ca036877bf6",
                 "shasum": ""
             },
             "require": {
@@ -1198,7 +1260,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-09-24 08:48:58"
+            "time": "2013-09-27 14:18:10"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -1480,16 +1542,16 @@
         },
         {
             "name": "squareproton/bond",
-            "version": "dev-master",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squareproton/Bond.git",
-                "reference": "a04ad9dd1a35adeaec98237716c2a41ce02b4f1a"
+                "reference": "75912fca132d9f5404851078eaedc4773abea076"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squareproton/Bond/zipball/a04ad9dd1a35adeaec98237716c2a41ce02b4f1a",
-                "reference": "a04ad9dd1a35adeaec98237716c2a41ce02b4f1a",
+                "url": "https://api.github.com/repos/squareproton/Bond/zipball/75912fca132d9f5404851078eaedc4773abea076",
+                "reference": "75912fca132d9f5404851078eaedc4773abea076",
                 "shasum": ""
             },
             "require": {
@@ -1532,7 +1594,7 @@
                 "orm",
                 "postgres"
             ],
-            "time": "2013-09-18 11:21:45"
+            "time": "2013-09-30 12:30:29"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1813,12 +1875,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "453f0d25f773324fa16505f9ec6d2d39cad420bc"
+                "reference": "e0d3573454b3f01902856fc3211874f61b9212cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/453f0d25f773324fa16505f9ec6d2d39cad420bc",
-                "reference": "453f0d25f773324fa16505f9ec6d2d39cad420bc",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/e0d3573454b3f01902856fc3211874f61b9212cc",
+                "reference": "e0d3573454b3f01902856fc3211874f61b9212cc",
                 "shasum": ""
             },
             "require": {
@@ -1913,7 +1975,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-09-25 06:04:15"
+            "time": "2013-09-30 09:54:26"
         },
         {
             "name": "twig/extensions",
@@ -1921,12 +1983,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig-extensions.git",
-                "reference": "f5b0c84f3699e494c84ee627d7d583e115d2c4a2"
+                "reference": "3604161a4aa2e5c535cbc708810123fd3258b2dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig-extensions/zipball/f5b0c84f3699e494c84ee627d7d583e115d2c4a2",
-                "reference": "f5b0c84f3699e494c84ee627d7d583e115d2c4a2",
+                "url": "https://api.github.com/repos/fabpot/Twig-extensions/zipball/3604161a4aa2e5c535cbc708810123fd3258b2dc",
+                "reference": "3604161a4aa2e5c535cbc708810123fd3258b2dc",
                 "shasum": ""
             },
             "require": {
@@ -1960,7 +2022,7 @@
                 "i18n",
                 "text"
             ],
-            "time": "2013-07-02 11:21:55"
+            "time": "2013-09-27 20:07:42"
         },
         {
             "name": "twig/twig",
@@ -1968,12 +2030,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Twig.git",
-                "reference": "d827c601e3afea6535fede5e39c9f91c12fc2e66"
+                "reference": "a0abed01eb4da79838d06db823d82a9c5cf6e6d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Twig/zipball/d827c601e3afea6535fede5e39c9f91c12fc2e66",
-                "reference": "d827c601e3afea6535fede5e39c9f91c12fc2e66",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/a0abed01eb4da79838d06db823d82a9c5cf6e6d0",
+                "reference": "a0abed01eb4da79838d06db823d82a9c5cf6e6d0",
                 "shasum": ""
             },
             "require": {
@@ -2009,7 +2071,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2013-09-20 20:40:25"
+            "time": "2013-09-29 07:27:48"
         },
         {
             "name": "willdurand/negotiation",
@@ -2069,9 +2131,10 @@
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "squareproton/bond": 20,
+        "captain-courier/cidr": 20
+    },
     "platform": {
         "php": ">=5.3.3"
     },

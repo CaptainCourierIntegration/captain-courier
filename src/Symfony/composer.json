@@ -21,7 +21,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/rest-bundle": "*",
         "jms/serializer-bundle": "*",
-        "squareproton/bond": "*"
+        "squareproton/bond": "dev-develop",
+        "captain-courier/cidr": "dev-develop"
     },
     "scripts": {
         "post-install-cmd": [
