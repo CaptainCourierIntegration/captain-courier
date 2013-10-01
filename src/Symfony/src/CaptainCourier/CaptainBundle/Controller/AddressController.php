@@ -159,6 +159,8 @@ class AddressController extends Controller
 	}
 
 	/**
+	 * will only check if address exists
+	 *
 	 * if address is valid response is:
 	 * RESPONSE
 	 *   - id
@@ -173,16 +175,48 @@ class AddressController extends Controller
 	public function verifyAddressAction($id)
 	{
 		$sql = sprintf('SELECT * FROM "Address" WHERE id = \'%s\';', $id);
-		$d = $this->d;
-		$d($sql);
 		$query = new Query($sql);
 		$result = $this->db->query($query)->fetch(Result::TYPE_DETECT);
 
+		$responseData = [];
+		if(count($result) >= 1) {
+			$responseData = ["status" => "valid"];
+		} else {
+			$responseData = ["status" => "invalid", "reason" => "no address exists with id {$id}"];
+		}
+		$responseData["id"] = "$id";
+
 		return new Response(
-			json_encode($result),
+			json_encode($responseData),
 			200,
 			['content-type' => 'application/json']
 		);
 	}
 
+	/**
+	 * returns an address object
+	 *
+	 *
+	 */
+	public function viewAddressAction($id)
+	{
+		$sql = sprintf('SELECT * FROM "Address" WHERE id = \'%s\';', $id);
+		$query = new Query($sql);
+		$result = $this->db->query($query)->fetch(Result::TYPE_DETECT);
+
+		if(count($result) >= 1) {
+			$responseData = json_decode(json_encode($result[0]));
+			$responseData->type = "Address";
+		} else {
+			$responseData = ["id" => "{$id}", "status" => "invalid", "reason" => "no address exists with id {$id}"];
+		}
+
+//		$this->d->log($responseData);
+
+		return new Response(
+			json_encode($responseData),
+			200,
+			['content-type' => 'application/json']
+		);			
+	}
 }
