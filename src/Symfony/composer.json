@@ -44,7 +44,7 @@
         "bin-dir": "bin",
         "process-timeout": 10000
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
