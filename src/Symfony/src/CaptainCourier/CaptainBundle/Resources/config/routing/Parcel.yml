@@ -1,0 +1,5 @@
+
+createParcel:
+    path: /
+    methods: [POST]
+    defaults: { _controller: parcelController:createParcelAction , _format: json }
