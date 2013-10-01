@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * (c) Captain Courier Integration <captain@captaincourier.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace CaptainCourier\CaptainBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -21,14 +28,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class AddressController extends Controller
 {
 	private $d;
-	private $em;
-	private $db;
+	private $entityManager;
+	private $database;
 
-	public function __construct($d, $em, $db)
+	public function __construct($d, $entityManager, $database)
 	{
 		$this->d = $d;
-		$this->em = $em;
-		$this->db = $db;
+		$this->entityManager = $entityManager;
+		$this->database = $database;
 
 		// $connectionSettings = new ConnectionSettings([
 		// 	"host" => "localhost",
@@ -133,7 +140,7 @@ class AddressController extends Controller
             }
         }
 
-        $address = $this->em->getRepository("Address")->make([
+        $address = $this->entityManager->getRepository("Address")->make([
              "name" => $args->name,
              "email" => $args->email,
              "line1" => $args->line1,
@@ -144,8 +151,8 @@ class AddressController extends Controller
              "line3" => $args->line3
         ]);
 
-        $this->em->recordManager->persist($address);
-        $this->em->recordManager->flush();
+        $this->entityManager->recordManager->persist($address);
+        $this->entityManager->recordManager->flush();
 
         $jsonObject = json_decode(json_encode($address));
         $jsonObject->type = 'Address';
@@ -176,7 +183,7 @@ class AddressController extends Controller
 	{
 		$sql = sprintf('SELECT * FROM "Address" WHERE id = \'%s\';', $id);
 		$query = new Query($sql);
-		$result = $this->db->query($query)->fetch(Result::TYPE_DETECT);
+		$result = $this->database->query($query)->fetch(Result::TYPE_DETECT);
 
 		$responseData = [];
 		if(count($result) >= 1) {
@@ -202,7 +209,7 @@ class AddressController extends Controller
 	{
 		$sql = sprintf('SELECT * FROM "Address" WHERE id = \'%s\';', $id);
 		$query = new Query($sql);
-		$result = $this->db->query($query)->fetch(Result::TYPE_DETECT);
+		$result = $this->database->query($query)->fetch(Result::TYPE_DETECT);
 
 		if(count($result) >= 1) {
 			$responseData = json_decode(json_encode($result[0]));
