@@ -1,0 +1,11 @@
+
+postAddress:
+    path: /
+    methods: [POST]
+    defaults: { _controller: addressController:postAddressAction , _format: json }
+
+verifyAddress:
+    path: /{id}/verify
+    methods: [GET]
+    defaults: { _controller: addressController:verifyAddressAction, _format: json }
+

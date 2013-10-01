@@ -1,0 +1,7 @@
+parameters:
+#    square_proton_bond.example.class: SquareProton\BondBundle\Example
+
+services:
+#    square_proton_bond.example:
+#        class: %square_proton_bond.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

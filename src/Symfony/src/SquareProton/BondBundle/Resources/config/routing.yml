@@ -1,0 +1,5 @@
+
+square_proton_bond_homepage:
+    path:  /hello/{name}
+    defaults: { _controller: SquareProtonBondBundle:Default:index }
+

@@ -24,9 +24,14 @@ _acme_demo:
 logout:
     path:   /addresses/logout
 
-address:
-    type: rest
-    resource: "CaptainCourier\\CaptainBundle\\Controller\\AddressController"
+captainCourierCaptain:
+    prefix: /
+    resource: "@CaptainCourierCaptainBundle/Resources/config/routing.yml"
+
+
+# address:
+#     type: rest
+#     resource: "CaptainCourier\\CaptainBundle\\Controller\\AddressController"
 
 parcel:
     type: rest

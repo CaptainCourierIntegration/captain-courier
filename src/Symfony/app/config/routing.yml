@@ -1,0 +1,4 @@
+square_proton_bond:
+    resource: "@SquareProtonBondBundle/Resources/config/routing.yml"
+    prefix:   /
+

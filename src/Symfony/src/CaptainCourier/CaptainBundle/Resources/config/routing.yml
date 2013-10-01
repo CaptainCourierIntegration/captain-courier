@@ -1,0 +1,4 @@
+
+address:
+    prefix: /addresses
+    resource: "@CaptainCourierCaptainBundle/Resources/config/routing/Address.yml"
