@@ -9,3 +9,7 @@ verifyAddress:
     methods: [GET]
     defaults: { _controller: addressController:verifyAddressAction, _format: json }
 
+viewAddress:
+    path: /{id}
+    methods: [GET]
+    defaults: { _controller: addressController:viewAddressAction, _format: json }
