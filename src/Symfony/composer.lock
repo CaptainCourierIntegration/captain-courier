@@ -734,12 +734,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "445b22269af82ff199c7422b5950e11b6545148e"
+                "reference": "b8fac8f1bac11e55eed486f638a0066a7106cf20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/445b22269af82ff199c7422b5950e11b6545148e",
-                "reference": "445b22269af82ff199c7422b5950e11b6545148e",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/b8fac8f1bac11e55eed486f638a0066a7106cf20",
+                "reference": "b8fac8f1bac11e55eed486f638a0066a7106cf20",
                 "shasum": ""
             },
             "require": {
@@ -758,6 +758,8 @@
                 "sensio/framework-extra-bundle": "~2.1",
                 "symfony/form": "~2.1",
                 "symfony/security": "~2.1",
+                "symfony/serializer": "~2.1",
+                "symfony/validator": "~2.1",
                 "symfony/yaml": "~2.1"
             },
             "suggest": {
@@ -800,7 +802,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2013-09-30 16:13:16"
+            "time": "2013-09-30 23:19:05"
         },
         {
             "name": "incenteev/composer-parameter-handler",
