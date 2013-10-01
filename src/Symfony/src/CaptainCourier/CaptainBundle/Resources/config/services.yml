@@ -70,6 +70,7 @@ services:
         class: CaptainCourier\CaptainBundle\Controller\AddressController
         scope: prototype
         arguments:
+            - "@d"
             - "@normalityEntityManager"
             - "@db"
         calls:
