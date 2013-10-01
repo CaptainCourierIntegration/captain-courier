@@ -1,0 +1,75 @@
+parameters:
+    connectionSettings:
+        host: localhost
+        dbname: captain
+        user: captain
+        password: captain
+
+services:
+
+    inject:
+        class: Bond\Di\Inject
+
+    connectionSettings:
+        class: Bond\Pg\ConnectionSettings
+        scope: prototype
+        arguments: [ "%connectionSettings%" ]
+
+    pgResource:
+        class: Bond\Pg\Resource
+        scope: prototype
+        arguments: [ "@connectionSettings" ]
+
+    db:
+        class: Bond\Pg
+        scope: prototype
+        arguments: [ "@pgResource" ]
+
+    eventEmitter:
+        class: Bond\Entity\EventEmitter
+        scope: prototype
+
+    normalityEntityManager:
+        class: Bond\EntityManager
+        scope: prototype
+        arguments:
+            - "@db"
+            - []
+            - "@eventEmitter"
+        configurator: [ "@entityManagerConfigurable", "configure" ]
+
+    # registerEntityManager:
+    #     class: CaptainCourier\CaptainBundle\Register\EntityManager 
+    #     scope: prototype
+    #     arguments:
+    #         - "@inject"
+    #     tags:
+    #         - { name: factory, class: registerEntityManagerFactory }
+
+    registerEntityManagerFactory:
+        class: SquareProton\BondBundle\DependencyInjection\SimpleConstructorFactory
+        scope: prototype
+        arguments: 
+            - CaptainCourier\CaptainBundle\Register\EntityManager
+            - [ "@inject" ]
+
+    entityManagerConfigurable:
+        class: CaptainCourier\CaptainBundle\DependencyInjection\EntityManagerConfigurator
+        scope: prototype
+        arguments: [ "@registerEntityManagerFactory" ]
+
+    d:
+        class: Bond\D
+        scope: container
+        arguments:
+            - 192.168.2.17
+            - hello/world
+            - {}
+
+    addressController:
+        class: CaptainCourier\CaptainBundle\Controller\AddressController
+        scope: prototype
+        arguments:
+            - "@normalityEntityManager"
+        calls:
+            - [setContainer, ["@service_container"]]
