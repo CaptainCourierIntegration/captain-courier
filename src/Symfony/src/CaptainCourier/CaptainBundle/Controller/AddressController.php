@@ -20,11 +20,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AddressController extends Controller
 {
+	private $d;
 	private $em;
 	private $db;
 
-	public function __construct($em, $db)
+	public function __construct($d, $em, $db)
 	{
+		$this->d = $d;
 		$this->em = $em;
 		$this->db = $db;
 
@@ -73,12 +75,6 @@ class AddressController extends Controller
 //		d($addresses);
 //
 //		parent::__construct();
-		$response = new Response(
-			'{"status": "ALL GOOD df"}',
-			200,
-			array('content-type' => "application/json")
-		);
-
         // $em->recordManager->delete($em->find("Address", 2));
         // $em->recordManager->flush();
 
@@ -162,11 +158,22 @@ class AddressController extends Controller
         );
 	}
 
-
+	/**
+	 * if address is valid response is:
+	 * RESPONSE
+	 *   - id
+	 *   - status: valid
+	 * if address isn't valid, response is:
+	 *	 
+	 * RESPONSE:
+	 *   - id
+	 *   - status: invalid
+	 *   - reason
+	 */
 	public function verifyAddressAction($id)
 	{
 		$sql = sprintf('SELECT * FROM "Address" WHERE id = \'%s\';', $id);
-		$d = \dify('192.168.2.17', 'hello/world');
+		$d = $this->d;
 		$d($sql);
 		$query = new Query($sql);
 		$result = $this->db->query($query)->fetch(Result::TYPE_DETECT);
