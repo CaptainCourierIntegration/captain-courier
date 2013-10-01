@@ -1,18 +1,12 @@
+**/*.directory
 **/*.DS_Store
-**/.directory
 **/node_modules
 *._*
 *.php~
-*.sublime-project
-*.sublime-workspace
+*.sublime*
 src/Symfony/app/cache/
 src/Symfony/app/logs/
-<<<<<<< Updated upstream
-*._*
-src/Symfony/vendor/
 src/Symfony/src/CaptainCourier/CaptainBundle/Backups/
-**/*.directory
-CaptainCourier.sublime*
-=======
+src/Symfony/src/CaptainCourier/CaptainBundle/Entity/Normality/
+src/Symfony/src/CaptainCourier/CaptainBundle/Entity/Repository/
 src/Symfony/vendor/
->>>>>>> Stashed changes

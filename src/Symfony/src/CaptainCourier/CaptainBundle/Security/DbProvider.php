@@ -1,6 +1,6 @@
 <?php
 
-namespace CaptainCourier\CaptainBundle\Security\User\Provider;
+namespace CaptainCourier\CaptainBundle\Security;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -13,7 +13,7 @@ use Bond\EntityManager;
 // use Bond\Repository;
 // use Bond\Pg\Exception\Query as QueryException;
 
-class AuthenticationProvider implements UserProviderInterface
+class DbProvider implements UserProviderInterface
 {
 
     private $entityManager;
@@ -21,6 +21,7 @@ class AuthenticationProvider implements UserProviderInterface
     public function __construct( EntityManager $entityManager )
     {
         $this->entityManager = $entityManager;
+        d("fuck");
     }
 
     function loadUserByUsername($username)

@@ -63,7 +63,7 @@ class Address extends RM
      * Normality tags from relation
      * @var array
      */
-    protected $normality = '{"persist":{"references":["Shipment.collectionAddressId","Shipment.deliveryAddressId"]}}';
+    protected $normality = '[]';
     
     /**
      * Reference information for this relation

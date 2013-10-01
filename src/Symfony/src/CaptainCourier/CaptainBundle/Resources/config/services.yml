@@ -6,6 +6,8 @@ parameters:
         user: captain
         password: captain
 
+    security.user.provider.concrete.authentication_provider: CaptainCourier\CaptainBundle\Security\AuthenticationProvider
+
 services:
 
     inject:
@@ -76,7 +78,9 @@ services:
         calls:
             - [setContainer, ["@service_container"]]
 
-    authentication_provider:
-        class: CaptainCourier\CaptainBundle\Security\AuthenticationProvider
+
+    db_provider:
+        class: CaptainCourier\CaptainBundle\Security\DbProvider
+        scope: container
         arguments:
-            - "@normalityEntityManager"
+            - @normalityEntityManager=

@@ -7,6 +7,10 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
+
+        account_provider:
+            id: db_provider
+
         in_memory:
             memory:
                 users:
@@ -49,10 +53,10 @@ security:
             anonymous: ~
             http_basic:
                 realm: "auth provider test"
-            provider: authentication_provider
-            logout:
-                path: /security/logout
-                target: /security
+            provider: account_provider
+            # logout:
+            #     path: /security/logout
+            #     target: /security
 
     access_control:
         - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
