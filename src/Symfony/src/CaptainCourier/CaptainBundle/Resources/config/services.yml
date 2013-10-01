@@ -1,4 +1,5 @@
 parameters:
+
     connectionSettings:
         host: localhost
         dbname: captain
@@ -39,7 +40,7 @@ services:
         configurator: [ "@entityManagerConfigurable", "configure" ]
 
     # registerEntityManager:
-    #     class: CaptainCourier\CaptainBundle\Register\EntityManager 
+    #     class: CaptainCourier\CaptainBundle\Register\EntityManager
     #     scope: prototype
     #     arguments:
     #         - "@inject"
@@ -49,7 +50,7 @@ services:
     registerEntityManagerFactory:
         class: SquareProton\BondBundle\DependencyInjection\SimpleConstructorFactory
         scope: prototype
-        arguments: 
+        arguments:
             - CaptainCourier\CaptainBundle\Register\EntityManager
             - [ "@inject" ]
 
@@ -74,3 +75,8 @@ services:
             - "@db"
         calls:
             - [setContainer, ["@service_container"]]
+
+    authentication_provider:
+        class: CaptainCourier\CaptainBundle\Security\AuthenticationProvider
+        arguments:
+            - "@normalityEntityManager"

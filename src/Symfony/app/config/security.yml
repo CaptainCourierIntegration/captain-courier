@@ -37,12 +37,22 @@ security:
             anonymous: ~
             http_basic:
                 realm: "My Private Area"
-            logout: 
+            logout:
                 path: /addresses/logout
                 target: /addresses
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
+
+        app:
+            pattern: ^/security
+            anonymous: ~
+            http_basic:
+                realm: "auth provider test"
+            provider: authentication_provider
+            logout:
+                path: /security/logout
+                target: /security
 
     access_control:
         - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
