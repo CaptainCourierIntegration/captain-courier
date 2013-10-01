@@ -24,10 +24,10 @@ _acme_demo:
 logout:
     path:   /addresses/logout
 
-address:
-    path: /addresses
-    methods: [POST]
-    defaults: { _controller: addressController:cpostAction , _format: json }
+captainCourierCaptain:
+    prefix: /
+    resource: "@CaptainCourierCaptainBundle/Resources/config/routing.yml"
+
 
 # address:
 #     type: rest

@@ -2,3 +2,6 @@ src/Symfony/app/cache/
 src/Symfony/app/logs/
 *._*
 src/Symfony/vendor/
+src/Symfony/src/CaptainCourier/CaptainBundle/Backups/
+**/*.directory
+CaptainCourier.sublime*

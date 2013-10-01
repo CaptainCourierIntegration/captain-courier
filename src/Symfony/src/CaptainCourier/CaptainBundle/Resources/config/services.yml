@@ -71,5 +71,6 @@ services:
         scope: prototype
         arguments:
             - "@normalityEntityManager"
+            - "@db"
         calls:
             - [setContainer, ["@service_container"]]

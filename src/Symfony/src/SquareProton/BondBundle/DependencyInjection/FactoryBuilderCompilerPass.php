@@ -16,11 +16,15 @@ class FactoryBuilderCompilerPass implements CompilerPassInterface
 
 	public function process(ContainerBuilder $container)
 	{
+		$d = dify('192.168.2.17', 'hello/world');
 		$services = $container->findTaggedServiceIds(self::TAG);
 
 		foreach ($services as $serviceName => $tagConfigs) {
-			$def = $container->getDefinition($serviceName);
-			d(new FactoryMapper($def));
+			foreach($tagConfigs as $tagConfig) {
+				
+				$def = $container->getDefinition($serviceName);
+				$d($serviceName, $tagConfig);
+			}
 		}	
 		// $config = [];
 		// foreach ($services as $serviceName => $tagConfigs) {
