@@ -13,17 +13,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ParcelController extends RestController
 {
-	private $response;
+	private $d;
+	private $entityManager;
+	private $database;
 
-	public function __construct()
+	public function __construct($d, $entityManager, $database)
 	{
-		parent::__construct();
-		$this->response = new Response(
-			'{"status": "ALL GOOD"}',
-			200,
-			array('content-type' => "application/json")
-		);
-	}
+		$this->d = $d;
+		$this->entityManager = $entityManager;
+		$this->database = $database;
+	}	
 
 	// view
 	public function getAction($id)
@@ -31,9 +30,27 @@ class ParcelController extends RestController
 		return $this->response;
 	}
 
-	// create
-	public function cpostAction()
+
+	/**
+	 *
+	 * creates a parcel
+	 *
+	 * REQUEST
+	 *   - *width in cm
+	 *   - *height in cm
+	 *   - *length in cm
+	 *   - *weight in grams
+	 *   - *value in sterling(£)
+	 *
+	 */
+	public function createParcelAction()
 	{
-		return $this->response;
+		$content = json_decode($this->get("request")->getContent());
+
+		return new Response(
+			json_encode($content),
+			200,
+			array('content-type' => "application/json")
+		);
 	}
 }
