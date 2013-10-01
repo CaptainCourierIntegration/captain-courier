@@ -178,11 +178,18 @@ class AddressController extends Controller
 		$query = new Query($sql);
 		$result = $this->db->query($query)->fetch(Result::TYPE_DETECT);
 
+		$responseData = [];
+		if(count($result) >= 1) {
+			$responseData = ["status" => "valid"];
+		} else {
+			$responseData = ["status" => "invalid", "reason" => "no address exists with id {$id}"];
+		}
+		$responseData["id"] = "$id";
+
 		return new Response(
-			json_encode($result),
+			json_encode($responseData),
 			200,
 			['content-type' => 'application/json']
 		);
 	}
-
 }
