@@ -33,12 +33,14 @@ function request()
 
 function handleResponse(response)
 {
+	console.log("HANDLING RESPONSE");
 	console.log(response);
 	$("#response").text(response);
 }
 
 function handleError(response)
 {
+	console.log("HANDLING ERROR");
 	console.log(response);
 	$("#response").text(response);
 }
