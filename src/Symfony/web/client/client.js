@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-	requestCreateItem();
+	requestCreateShipment();
 
 });
 
@@ -66,6 +66,28 @@ function requestCreateItem()
 	result = $.ajax({
 		type: "POST",
 		url: "http://192.168.2.18:8000/items/",
+		contentType: "json",
+		data: JSON.stringify(data),
+		processData: false,
+		timeout: 1000000,
+		success: handleResponse,
+		error: handleError
+	});
+}
+
+function requestCreateShipment()
+{
+	var data = {
+		to: "23",
+		from: "24",
+		parcel: "3",
+		items: ["20", "21"]
+	};
+
+	// the trailing slash is required, not sure why it is different from address.
+	result = $.ajax({
+		type: "POST",
+		url: "http://192.168.2.18:8000/shipments/",
 		contentType: "json",
 		data: JSON.stringify(data),
 		processData: false,
