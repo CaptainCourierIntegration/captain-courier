@@ -13,27 +13,21 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ItemController extends RestController
 {
-	private $response;
 
-	public function __construct()
+	private $d;
+	private $entityManager;
+	private $database;
+
+	public function __construct($d, $entityManager, $database)
 	{
 		parent::__construct();
-		$this->response = new Response(
-			'{"status": "ALL GOOD"}',
-			200,
-			array('content-type' => "application/json")
-		);
+		$this->d = $d;
+		$this->entityManager = $entityManager;
+		$this->database = $database;
 	}
 
-	// view
-	public function getAction($id)
+	public function createItemAction()
 	{
-		return $this->response;
-	}
-
-	// create
-	public function cpostAction()
-	{
-		return $this->response;
+		
 	}
 }
