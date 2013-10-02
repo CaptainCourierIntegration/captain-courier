@@ -119,7 +119,7 @@ class AddressController extends Controller
      *   - countryCode
      *   - postcode
      */
-	public function postAddressAction()
+	public function createAddressAction()
 	{
         $contentString = $this->get("request")->getContent();
         $args = json_decode($contentString);

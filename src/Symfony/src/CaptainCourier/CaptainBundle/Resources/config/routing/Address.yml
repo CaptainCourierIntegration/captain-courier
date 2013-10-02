@@ -2,7 +2,7 @@
 postAddress:
     path: /
     methods: [POST]
-    defaults: { _controller: addressController:postAddressAction , _format: json }
+    defaults: { _controller: addressController:createAddressAction , _format: json }
 
 verifyAddress:
     path: /{id}/verify
