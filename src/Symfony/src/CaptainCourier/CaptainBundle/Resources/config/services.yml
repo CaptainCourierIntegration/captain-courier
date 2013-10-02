@@ -66,23 +66,24 @@ services:
             - hello/world
             - {}
 
-    addressController:
-        class: CaptainCourier\CaptainBundle\Controller\AddressController
+    controllerDef:
+        abstract: true
         scope: prototype
         arguments:
             - "@d"
             - "@normalityEntityManager"
             - "@db"
         calls:
-            - [setContainer, ["@service_container"]]
+            - [setContainer, ["@serviceContainer"]]
 
+    addressController:
+        class: CaptainCourier\CaptainBundle\Controller\AddressController
+        parent: controllerDef
 
     parcelController:
         class: CaptainCourier\CaptainBundle\Controller\ParcelController
-        scope: prototype
-        arguments:
-            - "@d"
-            - "@normalityEntityManager"
-            - "@db"        
-        calls:
-            - [setContainer, ["@service_container"]]
+        parent: controllerDef
+
+    itemController:
+        class: CaptainCourier\CaptainBundle\Controller\ItemController
+        parent: controllerDef
