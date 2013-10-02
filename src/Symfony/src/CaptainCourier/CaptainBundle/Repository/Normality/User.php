@@ -28,7 +28,7 @@ class User extends RM
     protected $dataTypes = [
         'id' => '["id","User","User.id",{"type":"int","isPrimaryKey":true,"isUnique":true,"default":"nextval(\'\\"seq_User_id\\"\'::regclass)"}]',
         'accountId' => '["accountId","User","User.accountId",{"type":"int","entity":"normality","normality":"Account"}]',
-        'email' => '["email","User","User.email",{"type":"text"}]',
+        'email' => '["email","User","User.email",{"type":"text","isUnique":true}]',
         'authenticationId' => '["authenticationId","User","User.authenticationId",{"type":"int","entity":"normality","normality":"Authentication"}]',
         'apiKey' => '["apiKey","User","User.apiKey",{"type":"uuid","default":"uuid_generate_v4()"}]',
     ];

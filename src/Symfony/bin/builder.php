@@ -15,7 +15,6 @@ use Bond\Pg\ConnectionSettings;
 use Bond\Pg\Resource;
 use Bond\Sql\Raw;
 
-
 // $container = new \Symfony\Component\DependencyInjection\ContainerBuilder();
 // $configurator = new \Bond\Di\Configurator($container);
 // $configurator->load( __DIR__ . "/../vendor/squareproton/bond/src/Bond/Pg/Tests/Di/ConnectionFactoryConfigurable.yml");

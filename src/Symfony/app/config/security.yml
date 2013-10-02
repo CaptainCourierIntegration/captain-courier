@@ -1,12 +1,26 @@
 security:
+
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
 
+    encoders:
+
+        account_encoder:
+            class: CaptainCourier\CaptainBundle\Security\User
+            algorithm: plaintext
+            encode_as_base64: false
+            iterations: 1
+
     role_hierarchy:
+
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
+
+        account_provider:
+            id: securityDbProvider
+
         in_memory:
             memory:
                 users:
@@ -14,35 +28,20 @@ security:
                     admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
+
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        login:
-            pattern:  ^/demo/secured/login$
-            security: false
-
-        secured_area:
-            pattern:    ^/demo/secured/
-            form_login:
-                check_path: _security_check
-                login_path: _demo_login
-            logout:
-                path:   _demo_logout
-                target: _demo
-
-
-        my_private_area:
-            pattern: ^/addresses
-            anonymous: ~
+        app:
+            pattern: ^/security
+            provider: account_provider
+            stateless:  true
             http_basic:
-                realm: "My Private Area"
-            logout: 
-                path: /addresses/logout
-                target: /addresses
-            #anonymous: ~
-            #http_basic:
-            #    realm: "Secured Demo Area"
+                realm: "API"
+            logout:
+                path: /security/logout
+                target: /security
 
     access_control:
         - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }

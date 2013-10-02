@@ -1,7 +1,13 @@
+**/*.directory
+**/*.DS_Store
+**/node_modules
+*._*
+*.php~
+*.sublime*
+docs/schemaSpy/
 src/Symfony/app/cache/
 src/Symfony/app/logs/
-*._*
-src/Symfony/vendor/
 src/Symfony/src/CaptainCourier/CaptainBundle/Backups/
-**/*.directory
-CaptainCourier.sublime*
+src/Symfony/src/CaptainCourier/CaptainBundle/Entity/Normality/
+src/Symfony/src/CaptainCourier/CaptainBundle/Repository/Normality/
+src/Symfony/vendor/

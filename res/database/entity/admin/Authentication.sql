@@ -16,7 +16,7 @@ CREATE TABLE "Authentication" (
     "id" int NOT NULL DEFAULT nextval('"seq_Authentication_id"'::regclass),
 	"hashType" hash NOT NULL DEFAULT 'SHA1',
 	"hash" text NOT NULL,
-	"salt" text NOT NULL,
+	"salt" text,
     CONSTRAINT "pk_Authentication" PRIMARY KEY (id)
 );
 

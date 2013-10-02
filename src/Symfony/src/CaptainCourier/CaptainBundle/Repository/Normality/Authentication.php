@@ -29,7 +29,7 @@ class Authentication extends RM
         'id' => '["id","Authentication","Authentication.id",{"type":"int","isPrimaryKey":true,"isUnique":true,"default":"nextval(\'\\"seq_Authentication_id\\"\'::regclass)"}]',
         'hashType' => '["hashType","Authentication","Authentication.hashType",{"type":"hash","default":"\'SHA1\'::hash","enumName":"hash"}]',
         'hash' => '["hash","Authentication","Authentication.hash",{"type":"text"}]',
-        'salt' => '["salt","Authentication","Authentication.salt",{"type":"text"}]',
+        'salt' => '["salt","Authentication","Authentication.salt",{"type":"text","isNullable":true}]',
     ];
     
     /**
@@ -81,13 +81,13 @@ class Authentication extends RM
             $resolver->setRequired(
                 array(
                     0 => 'hash',
-                    1 => 'salt',
                 )
             );                        
             $resolver->setOptional(
                 array(
                     0 => 'id',
                     1 => 'hashType',
+                    2 => 'salt',
                 )
             );
             $this->resolver = $resolver;

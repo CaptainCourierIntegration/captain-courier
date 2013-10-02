@@ -1533,12 +1533,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squareproton/Bond.git",
-                "reference": "e5b6912f294c23dcbb438aae20af8cc5482054df"
+                "reference": "f7958952af15b32ff8ccc62e9d7543d3a67ae894"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squareproton/Bond/zipball/e5b6912f294c23dcbb438aae20af8cc5482054df",
-                "reference": "e5b6912f294c23dcbb438aae20af8cc5482054df",
+                "url": "https://api.github.com/repos/squareproton/Bond/zipball/f7958952af15b32ff8ccc62e9d7543d3a67ae894",
+                "reference": "f7958952af15b32ff8ccc62e9d7543d3a67ae894",
                 "shasum": ""
             },
             "require": {
@@ -1581,7 +1581,7 @@
                 "orm",
                 "postgres"
             ],
-            "time": "2013-10-01 13:25:11"
+            "time": "2013-10-02 11:47:29"
         },
         {
             "name": "swiftmailer/swiftmailer",

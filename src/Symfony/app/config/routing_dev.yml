@@ -14,8 +14,8 @@ _main:
     resource: routing.yml
 
 # AcmeDemoBundle routes (to be removed)
-_acme_demo:
-    resource: "@AcmeDemoBundle/Resources/config/routing.yml"
+#_acme_demo:
+#    resource: "@AcmeDemoBundle/Resources/config/routing.yml"
 
 # CaptainCourierCaptainBundle:
 #     resource: "@CaptainCourierCaptainBundle/Controller"
@@ -28,6 +28,10 @@ captainCourierCaptain:
     prefix: /
     resource: "@CaptainCourierCaptainBundle/Resources/config/routing.yml"
 
+security:
+    path: /security
+    defaults:
+        _controller: CaptainCourierCaptainBundle:Default:security
 
 # address:
 #     type: rest
@@ -44,7 +48,6 @@ item:
 customsInfo:
     type: rest
     resource: "CaptainCourier\\CaptainBundle\\Controller\\CustomsInfoController"
-
 
 shipment:
     type: rest
