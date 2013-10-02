@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 });
 
-function requestCreateShipment()
+function requestCreateAddress()
 {
 	var data = {
 		name: "joseph",
@@ -20,7 +20,7 @@ function requestCreateShipment()
 
 	result = $.ajax({
 		type: "POST",
-		url: "http://192.168.2.18:8000/addresses",
+		url: "http://192.168.2.18:8000/addresses/",
 		contentType: "json",
 		data: JSON.stringify(data),
 		processData: false,
@@ -58,12 +58,12 @@ function handleResponse(response)
 {
 	console.log("HANDLING RESPONSE");
 	console.log(response);
-	$("#response").text(response);
+	$("#response").text(JSON.stringify(response));
 }
 
 function handleError(response)
 {
 	console.log("HANDLING ERROR");
 	console.log(response);
-	$("#response").text(response);
+	$("#response").text(JSON.stringify(response));
 }
