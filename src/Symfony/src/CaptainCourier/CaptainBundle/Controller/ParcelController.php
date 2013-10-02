@@ -47,6 +47,10 @@ class ParcelController extends RestController
 	{
 		$content = json_decode($this->get("request")->getContent());
 
+		$parcel = $this->entityManager->getRepository("Parcel")->make((array)$content);
+		$this->d->log($parcel);
+		$this->entityManager->recordManager->persist($parcel);
+		$this->entityManager->recordManager->flush();
 		return new Response(
 			json_encode($content),
 			200,
