@@ -78,10 +78,10 @@ function requestCreateItem()
 function requestCreateShipment()
 {
 	var data = {
-		to: "23",
-		from: "24",
-		parcel: "3",
-		items: ["20", "21"]
+		to: "1",
+		from: "2",
+		parcel: "2",
+		items: ["1", "2", "3"]
 	};
 
 	// the trailing slash is required, not sure why it is different from address.
