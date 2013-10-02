@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * (c) Captain Courier Integration <captain@captaincourier.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace CaptainCourier\CaptainBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
@@ -20,13 +27,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AddressController extends Controller
 {
-	private $em;
-	private $db;
+	private $d;
+	private $entityManager;
+	private $database;
 
-	public function __construct($em, $db)
+	public function __construct($d, $entityManager, $database)
 	{
-		$this->em = $em;
-		$this->db = $db;
+		$this->d = $d;
+		$this->entityManager = $entityManager;
+		$this->database = $database;
 
 		// $connectionSettings = new ConnectionSettings([
 		// 	"host" => "localhost",
@@ -73,12 +82,6 @@ class AddressController extends Controller
 //		d($addresses);
 //
 //		parent::__construct();
-		$response = new Response(
-			'{"status": "ALL GOOD df"}',
-			200,
-			array('content-type' => "application/json")
-		);
-
         // $em->recordManager->delete($em->find("Address", 2));
         // $em->recordManager->flush();
 
@@ -116,7 +119,7 @@ class AddressController extends Controller
      *   - countryCode
      *   - postcode
      */
-	public function postAddressAction()
+	public function createAddressAction()
 	{
         $contentString = $this->get("request")->getContent();
         $args = json_decode($contentString);
@@ -137,7 +140,7 @@ class AddressController extends Controller
             }
         }
 
-        $address = $this->em->getRepository("Address")->make([
+        $address = $this->entityManager->getRepository("Address")->make([
              "name" => $args->name,
              "email" => $args->email,
              "line1" => $args->line1,
@@ -148,8 +151,8 @@ class AddressController extends Controller
              "line3" => $args->line3
         ]);
 
-        $this->em->recordManager->persist($address);
-        $this->em->recordManager->flush();
+        $this->entityManager->recordManager->persist($address);
+        $this->entityManager->recordManager->flush();
 
         $jsonObject = json_decode(json_encode($address));
         $jsonObject->type = 'Address';
@@ -162,20 +165,65 @@ class AddressController extends Controller
         );
 	}
 
-
+	/**
+	 * will only check if address exists
+	 *
+	 * if address is valid response is:
+	 * RESPONSE
+	 *   - id
+	 *   - status: valid
+	 * if address isn't valid, response is:
+	 *	 
+	 * RESPONSE:
+	 *   - id
+	 *   - status: invalid
+	 *   - reason
+	 */
 	public function verifyAddressAction($id)
 	{
 		$sql = sprintf('SELECT * FROM "Address" WHERE id = \'%s\';', $id);
-		$d = \dify('192.168.2.17', 'hello/world');
-		$d($sql);
 		$query = new Query($sql);
-		$result = $this->db->query($query)->fetch(Result::TYPE_DETECT);
+		$result = $this->database->query($query)->fetch(Result::TYPE_DETECT);
+
+		$responseData = [];
+		if(count($result) >= 1) {
+			$responseData = ["status" => "valid"];
+		} else {
+			$responseData = ["status" => "invalid", "reason" => "no address exists with id {$id}"];
+		}
+		$responseData["id"] = "$id";
 
 		return new Response(
-			json_encode($result),
+			json_encode($responseData),
 			200,
 			['content-type' => 'application/json']
 		);
 	}
 
+	/**
+	 * returns an address object
+	 *
+	 *
+	 */
+	public function viewAddressAction($id)
+	{
+		$sql = sprintf('SELECT * FROM "Address" WHERE id = \'%s\';', $id);
+		$query = new Query($sql);
+		$result = $this->database->query($query)->fetch(Result::TYPE_DETECT);
+
+		if(count($result) >= 1) {
+			$responseData = json_decode(json_encode($result[0]));
+			$responseData->type = "Address";
+		} else {
+			$responseData = ["id" => "{$id}", "status" => "invalid", "reason" => "no address exists with id {$id}"];
+		}
+
+//		$this->d->log($responseData);
+
+		return new Response(
+			json_encode($responseData),
+			200,
+			['content-type' => 'application/json']
+		);			
+	}
 }

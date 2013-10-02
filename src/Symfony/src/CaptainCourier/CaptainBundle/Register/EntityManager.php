@@ -19,6 +19,7 @@ class EntityManager
         $em->register( 'CaptainCourier\\CaptainBundle\\Entity\\Courier', 'CaptainCourier\\CaptainBundle\\Repository\\Courier' );
         $em->register( 'CaptainCourier\\CaptainBundle\\Entity\\CustomsInfo', 'CaptainCourier\\CaptainBundle\\Repository\\CustomsInfo' );
         $em->register( 'CaptainCourier\\CaptainBundle\\Entity\\Item', 'CaptainCourier\\CaptainBundle\\Repository\\Item' );
+        $em->register( 'CaptainCourier\\CaptainBundle\\Entity\\ItemLinkShipment', 'CaptainCourier\\CaptainBundle\\Repository\\ItemLinkShipment' );
         $em->register( 'CaptainCourier\\CaptainBundle\\Entity\\Label', 'CaptainCourier\\CaptainBundle\\Repository\\Label' );
         $em->register( 'CaptainCourier\\CaptainBundle\\Entity\\Parcel', 'CaptainCourier\\CaptainBundle\\Repository\\Parcel' );
         $em->register( 'CaptainCourier\\CaptainBundle\\Entity\\Quote', 'CaptainCourier\\CaptainBundle\\Repository\\Quote' );

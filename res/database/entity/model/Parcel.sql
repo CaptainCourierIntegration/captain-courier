@@ -14,12 +14,12 @@ NO MINVALUE
 CACHE 1;
 
 CREATE TABLE "Parcel" (
-	"id" int,
-	width decimal(4, 2) NOT NULL CHECK (width >= 0),
-	height decimal(4, 2) NOT NULL CHECK (height >= 0),
-	length decimal(4, 2) NOT NULL CHECK (length >= 0),
-	weight decimal(4, 2) NOT NULL CHECK (weight >= 0),
-	"value" decimal(4, 2) NOT NULL CHECK ("value" >= 0),
+	"id" int NOT NULL DEFAULT nextval('"seq_Parcel_id"' :: regclass),
+	width decimal NOT NULL CHECK (width >= 0),
+	height decimal NOT NULL CHECK (height >= 0),
+	length decimal NOT NULL CHECK (length >= 0),
+	weight decimal NOT NULL CHECK (weight >= 0),
+	"value" decimal NOT NULL CHECK ("value" >= 0),
 	CONSTRAINT "pk_Parcel" PRIMARY KEY (id)
 );
 

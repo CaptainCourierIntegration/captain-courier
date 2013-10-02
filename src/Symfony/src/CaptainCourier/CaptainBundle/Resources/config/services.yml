@@ -74,18 +74,35 @@ services:
             - pete
             - {}
 
-    addressController:
-        class: CaptainCourier\CaptainBundle\Controller\AddressController
-        scope: prototype
+    controllerDef:
+        abstract: true
         arguments:
+            - "@d"
             - "@normalityEntityManager"
             - "@db"
         calls:
             - [setContainer, ["@service_container"]]
 
+<<<<<<< HEAD
 
     securityDbProvider:
         class: CaptainCourier\CaptainBundle\Security\DbProvider
         scope: container
         arguments:
             - @normalityEntityManager=
+=======
+    addressController:
+        class: CaptainCourier\CaptainBundle\Controller\AddressController        
+        parent: controllerDef
+        scope: prototype        
+
+    parcelController:
+        class: CaptainCourier\CaptainBundle\Controller\ParcelController
+        parent: controllerDef
+        scope: prototype        
+
+    itemController:
+        class: CaptainCourier\CaptainBundle\Controller\ItemController
+        parent: controllerDef
+        scope: prototype        
+>>>>>>> 632b5514d339feffbd441ec913a47f11f0fec557

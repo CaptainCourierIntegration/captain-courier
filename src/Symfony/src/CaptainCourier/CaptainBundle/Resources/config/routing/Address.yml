@@ -2,10 +2,14 @@
 postAddress:
     path: /
     methods: [POST]
-    defaults: { _controller: addressController:postAddressAction , _format: json }
+    defaults: { _controller: addressController:createAddressAction , _format: json }
 
 verifyAddress:
     path: /{id}/verify
     methods: [GET]
     defaults: { _controller: addressController:verifyAddressAction, _format: json }
 
+viewAddress:
+    path: /{id}
+    methods: [GET]
+    defaults: { _controller: addressController:viewAddressAction, _format: json }
