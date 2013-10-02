@@ -40,9 +40,10 @@ function requestCreateParcel()
 		value: 101
 	};
 
+	// the trailing slash is required, not sure why it is different from address.
 	result = $.ajax({
 		type: "POST",
-		url: "http://192.168.2.18:8000/parcels",
+		url: "http://192.168.2.18:8000/parcels/",
 		contentType: "json",
 		data: JSON.stringify(data),
 		processData: false,
