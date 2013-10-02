@@ -68,22 +68,24 @@ services:
 
     controllerDef:
         abstract: true
-        scope: prototype
         arguments:
             - "@d"
             - "@normalityEntityManager"
             - "@db"
         calls:
-            - [setContainer, ["@serviceContainer"]]
+            - [setContainer, ["@service_container"]]
 
     addressController:
-        class: CaptainCourier\CaptainBundle\Controller\AddressController
+        class: CaptainCourier\CaptainBundle\Controller\AddressController        
         parent: controllerDef
+        scope: prototype        
 
     parcelController:
         class: CaptainCourier\CaptainBundle\Controller\ParcelController
         parent: controllerDef
+        scope: prototype        
 
     itemController:
         class: CaptainCourier\CaptainBundle\Controller\ItemController
         parent: controllerDef
+        scope: prototype        
