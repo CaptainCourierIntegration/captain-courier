@@ -3,6 +3,8 @@
 namespace CaptainCourier\CaptainBundle\Entity\Normality;
 
 use Bond\Entity\Base;
+use Bond\Entity\StaticMethods;
+use Bond\Repository;
 use Bond\Sql\QuoteInterface;
 use Bond\Sql\SqlInterface;
 use Symfony\Component\Validator\Constraints\NotNull;
@@ -21,11 +23,17 @@ class Parcel extends Base implements SqlInterface
     const ENTITY_FILESTORE = '/home/captain/CaptainCourier/captain-courier/src/Symfony/src/CaptainCourier/CaptainBundle/EntityFileStore/Parcel';
     
     /**
+     * Additional properties
+     * @var array
+     */
+    protected static $additionalProperties = ['Shipments'];
+    
+    /**
      * Columns defined in captain.Parcel
      * @var array
      */
     protected $data = array(
-        'id' => null, # PK;
+        'id' => null, # PK; is referenced by Shipment.parcelId
         'width' => null,
         'height' => null,
         'length' => null,
@@ -86,6 +94,12 @@ class Parcel extends Base implements SqlInterface
      */
     public function get( $key, $inputValidate = null, $source = null, \Bond\RecordManager\Task $task = null )
     {
+        switch( $key ) {
+    
+            case 'Shipments':
+                return $this->r()->referencesGet( $this, 'Shipment.parcelId' );
+            
+        }
         return parent::get( $key, $inputValidate, $source, $task );
     }
     
@@ -111,6 +125,12 @@ class Parcel extends Base implements SqlInterface
      */
     public function set( $key, $value = null, $inputValidate = null )
     {
+        switch( $key ) {
+    
+            case 'Shipments':
+                return StaticMethods::set_references( $this, 'Shipment.parcelId', $value );
+            
+        }
         return parent::set( $key, $value, $inputValidate );
     }
     

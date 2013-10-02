@@ -28,11 +28,8 @@ class Shipment extends RM
     protected $dataTypes = [
         'id' => '["id","Shipment","Shipment.id",{"type":"int","isPrimaryKey":true,"isUnique":true,"default":"nextval(\'\\"seq_Shipment_id\\"\'::regclass)"}]',
         'collectionAddressId' => '["collectionAddressId","Shipment","Shipment.collectionAddressId",{"type":"int","entity":"normality","normality":"Address"}]',
-        'collectionTime' => '["collectionTime","Shipment","Shipment.collectionTime",{"type":"tsrange","entity":"DateRange"}]',
         'deliveryAddressId' => '["deliveryAddressId","Shipment","Shipment.deliveryAddressId",{"type":"int","entity":"normality","normality":"Address"}]',
-        'deliveryTime' => '["deliveryTime","Shipment","Shipment.deliveryTime",{"type":"tsrange","entity":"DateRange"}]',
-        'contractNumber' => '["contractNumber","Shipment","Shipment.contractNumber",{"type":"citext"}]',
-        'serviceCode' => '["serviceCode","Shipment","Shipment.serviceCode",{"type":"citext"}]',
+        'parcelId' => '["parcelId","Shipment","Shipment.parcelId",{"type":"int","entity":"normality","normality":"Parcel"}]',
     ];
     
     /**
@@ -45,7 +42,7 @@ class Shipment extends RM
      * Initial properties to be stored by a entity.
      * @var array
      */
-    protected $initialProperties = ['collectionAddressId', 'deliveryAddressId'];
+    protected $initialProperties = ['collectionAddressId', 'deliveryAddressId', 'parcelId'];
     
     /**
      * Link information for this relation
@@ -84,11 +81,8 @@ class Shipment extends RM
             $resolver->setRequired(
                 array(
                     0 => 'collectionAddressId',
-                    1 => 'collectionTime',
-                    2 => 'deliveryAddressId',
-                    3 => 'deliveryTime',
-                    4 => 'contractNumber',
-                    5 => 'serviceCode',
+                    1 => 'deliveryAddressId',
+                    2 => 'parcelId',
                 )
             );                        
             $resolver->setOptional(
