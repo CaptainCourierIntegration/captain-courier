@@ -24,13 +24,6 @@ class ParcelController extends RestController
 		$this->database = $database;
 	}	
 
-	// view
-	public function getAction($id)
-	{
-		return $this->response;
-	}
-
-
 	/**
 	 *
 	 * creates a parcel
