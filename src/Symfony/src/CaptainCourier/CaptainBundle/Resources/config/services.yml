@@ -66,6 +66,10 @@ services:
             - hello/world
             - {}
 
+    cidr:
+        class: Cidr\Cidr
+        scope: prototype
+
     controllerDef:
         abstract: true
         arguments:
@@ -94,3 +98,5 @@ services:
         class: CaptainCourier\CaptainBundle\Controller\ShipmentController
         parent: controllerDef
         scope: prototype
+        arguments:
+            - "@cidr"
