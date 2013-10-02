@@ -8,6 +8,8 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
 use Bond\EntityManager;
+use Bond\Sql\Query;
+use Bond\Pg\Result;
 
 // use PrintNode\MainBundle\Entity\Account;
 // use Bond\Repository;
@@ -17,63 +19,66 @@ class DbProvider implements UserProviderInterface
 {
 
     private $entityManager;
+    private $db;
 
     public function __construct( EntityManager $entityManager )
     {
         $this->entityManager = $entityManager;
-        d("fuck");
+        $this->db = $this->entityManager->db;
     }
 
     function loadUserByUsername($username)
     {
 
-        d($username);
-        die();
-
-        $accountRepository = Repository::init('Account');
-
         try {
-
-            if (!($account = $accountRepository->findOneByEmail($username))) {
-
-                throw new UsernameNotFoundException(
-                    sprintf(
-                        'User "%s" does not exist.',
-                        $username
-                    )
-                );
-            }
-
-        } catch (QueryException $e) {
-
-            throw new UsernameNotFoundException(
-                sprintf(
-                    'Server error.',
-                    $username
-                )
+            $query = new Query( <<<SQL
+                SELECT
+                    u.id,
+                    email,
+                    "apiKey",
+                    "hashType",
+                    hash,
+                    salt
+                FROM
+                    "User" u
+                INNER JOIN
+                    "Authentication" a ON "authenticationId" = a.id
+                WHERE
+                    email = %email:%
+SQL
+                , [ "email" => $username ]
             );
+
+            $user = $this->db->query($query)->fetch(Result::FETCH_SINGLE);
+        } catch ( \Exception $e ) {
+            d($e);
+            throw $e;
         }
 
-        return $account;
+        if( !$user ) {
+            $exception = new UsernameNotFoundException();
+            $exception->setUsername($username);
+            throw $exception;
+        };
+
+        try {
+            $user = new User($user);
+        } catch ( \Exception $e ) {
+            d($e);
+            throw $e;
+        }
+
+        return $user;
+
     }
 
     function refreshUser(UserInterface $user)
     {
-        if (!$user instanceof Account) {
-
-            throw new UnsupportedUserException(
-                sprintf(
-                    'Instances of "%s" are not supported.',
-                    get_class($user)
-                )
-            );
-        }
-
-        return $this->loadUserByUsername($user->getUsername());
+        return $this->loadUserByUsername( $user->getUsername() );
     }
 
     function supportsClass($class)
     {
-        return $class == 'PrintNode\MainBundle\Entity\Account';
+        return $class === User::class;
     }
 }

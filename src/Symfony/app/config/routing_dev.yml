@@ -28,7 +28,6 @@ captainCourierCaptain:
     prefix: /
     resource: "@CaptainCourierCaptainBundle/Resources/config/routing.yml"
 
-
 security:
     path: /security
     defaults:

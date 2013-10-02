@@ -4,9 +4,10 @@
 *._*
 *.php~
 *.sublime*
+docs/schemaSpy/
 src/Symfony/app/cache/
 src/Symfony/app/logs/
 src/Symfony/src/CaptainCourier/CaptainBundle/Backups/
 src/Symfony/src/CaptainCourier/CaptainBundle/Entity/Normality/
-src/Symfony/src/CaptainCourier/CaptainBundle/Entity/Repository/
+src/Symfony/src/CaptainCourier/CaptainBundle/Repository/Normality/
 src/Symfony/vendor/
