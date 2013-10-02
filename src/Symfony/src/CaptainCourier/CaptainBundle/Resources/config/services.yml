@@ -84,3 +84,5 @@ services:
             - "@d"
             - "@normalityEntityManager"
             - "@db"        
+        calls:
+            - [setContainer, ["@service_container"]]
