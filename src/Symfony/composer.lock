@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/CaptainCourierIntegration/captain-courier-cidr.git",
-                "reference": "20a26d776f9358dc21d06c0235021376e2f5b52b"
+                "reference": "8f60c12e73a3815b61b4151c7e3076f3138a39f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CaptainCourierIntegration/captain-courier-cidr/zipball/20a26d776f9358dc21d06c0235021376e2f5b52b",
-                "reference": "20a26d776f9358dc21d06c0235021376e2f5b52b",
+                "url": "https://api.github.com/repos/CaptainCourierIntegration/captain-courier-cidr/zipball/8f60c12e73a3815b61b4151c7e3076f3138a39f2",
+                "reference": "8f60c12e73a3815b61b4151c7e3076f3138a39f2",
                 "shasum": ""
             },
             "require": {
@@ -65,7 +65,7 @@
                 "shipping",
                 "tracking"
             ],
-            "time": "2013-09-30 16:14:46"
+            "time": "2013-10-02 14:03:00"
         },
         {
             "name": "doctrine/annotations",
@@ -1533,12 +1533,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squareproton/Bond.git",
-                "reference": "203c6e6459003812b7c5a991c37455d23df248e1"
+                "reference": "f7958952af15b32ff8ccc62e9d7543d3a67ae894"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squareproton/Bond/zipball/203c6e6459003812b7c5a991c37455d23df248e1",
-                "reference": "203c6e6459003812b7c5a991c37455d23df248e1",
+                "url": "https://api.github.com/repos/squareproton/Bond/zipball/f7958952af15b32ff8ccc62e9d7543d3a67ae894",
+                "reference": "f7958952af15b32ff8ccc62e9d7543d3a67ae894",
                 "shasum": ""
             },
             "require": {
@@ -1581,7 +1581,7 @@
                 "orm",
                 "postgres"
             ],
-            "time": "2013-10-01 16:04:29"
+            "time": "2013-10-02 11:47:29"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1697,20 +1697,21 @@
         },
         {
             "name": "symfony/icu",
-            "version": "v1.0.0",
+            "version": "v1.2.0",
             "target-dir": "Symfony/Component/Icu",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Icu.git",
-                "reference": "cac3fdfb111adbe590155f491594636d45129783"
+                "reference": "7299cd3d8d6602103d1ebff5d0a9917b7bc6de72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Icu/zipball/cac3fdfb111adbe590155f491594636d45129783",
-                "reference": "cac3fdfb111adbe590155f491594636d45129783",
+                "url": "https://api.github.com/repos/symfony/Icu/zipball/7299cd3d8d6602103d1ebff5d0a9917b7bc6de72",
+                "reference": "7299cd3d8d6602103d1ebff5d0a9917b7bc6de72",
                 "shasum": ""
             },
             "require": {
+                "lib-icu": ">=4.4",
                 "php": ">=5.3.3",
                 "symfony/intl": "~2.3"
             },
@@ -1740,7 +1741,7 @@
                 "icu",
                 "intl"
             ],
-            "time": "2013-06-03 18:32:07"
+            "time": "2013-06-03 18:32:58"
         },
         {
             "name": "symfony/monolog-bundle",
