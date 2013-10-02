@@ -80,12 +80,17 @@ services:
         parent: controllerDef
         scope: prototype        
 
+    itemController:
+        class: CaptainCourier\CaptainBundle\Controller\ItemController
+        parent: controllerDef
+        scope: prototype  
+
     parcelController:
         class: CaptainCourier\CaptainBundle\Controller\ParcelController
         parent: controllerDef
         scope: prototype        
 
-    itemController:
-        class: CaptainCourier\CaptainBundle\Controller\ItemController
+    shipmentController:
+        class: CaptainCourier\CaptainBundle\Controller\ShipmentController
         parent: controllerDef
-        scope: prototype        
+        scope: prototype

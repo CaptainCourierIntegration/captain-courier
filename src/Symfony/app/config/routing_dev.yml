@@ -46,6 +46,6 @@ customsInfo:
     resource: "CaptainCourier\\CaptainBundle\\Controller\\CustomsInfoController"
 
 
-shipment:
-    type: rest
-    resource: "CaptainCourier\\CaptainBundle\\Controller\\ShipmentController"
+# shipment:
+#     type: rest
+#     resource: "CaptainCourier\\CaptainBundle\\Controller\\ShipmentController"
