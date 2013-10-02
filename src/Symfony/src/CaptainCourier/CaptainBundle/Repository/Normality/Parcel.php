@@ -1,12 +1,5 @@
 <?php
 
-/*
- * (c) Captain Courier Integration <captain@captaincourier.org>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace CaptainCourier\CaptainBundle\Repository\Normality;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -33,7 +26,7 @@ class Parcel extends RM
      * @var array
      */
     protected $dataTypes = [
-        'id' => '["id","Parcel","Parcel.id",{"type":"int","isPrimaryKey":true,"isUnique":true}]',
+        'id' => '["id","Parcel","Parcel.id",{"type":"int","isPrimaryKey":true,"isUnique":true,"default":"nextval(\'\\"seq_Parcel_id\\"\'::regclass)"}]',
         'width' => '["width","Parcel","Parcel.width",{"type":"numeric"}]',
         'height' => '["height","Parcel","Parcel.height",{"type":"numeric"}]',
         'length' => '["length","Parcel","Parcel.length",{"type":"numeric"}]',
@@ -89,12 +82,16 @@ class Parcel extends RM
             $resolver = new OptionsResolver();                        
             $resolver->setRequired(
                 array(
+                    0 => 'width',
+                    1 => 'height',
+                    2 => 'length',
+                    3 => 'weight',
+                    4 => 'value',
+                )
+            );                        
+            $resolver->setOptional(
+                array(
                     0 => 'id',
-                    1 => 'width',
-                    2 => 'height',
-                    3 => 'length',
-                    4 => 'weight',
-                    5 => 'value',
                 )
             );
             $this->resolver = $resolver;

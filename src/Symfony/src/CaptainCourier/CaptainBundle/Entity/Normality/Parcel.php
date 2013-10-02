@@ -2,7 +2,6 @@
 
 namespace CaptainCourier\CaptainBundle\Entity\Normality;
 
-use Bond\Bridge\Normality\Constraint\RealInt;
 use Bond\Entity\Base;
 use Bond\Sql\QuoteInterface;
 use Bond\Sql\SqlInterface;
@@ -47,12 +46,6 @@ class Parcel extends Base implements SqlInterface
     protected static $lateLoadProperty = 'id';
     
     /**
-     * Unsetable properties
-     * @var array
-     */
-    protected static $unsetableProperties = [];
-    
-    /**
     * Symfony Validator Metadata.
     *
     * @param ClassMetadata $metadata
@@ -60,15 +53,6 @@ class Parcel extends Base implements SqlInterface
     */
     protected static function _loadValidatorMetadata( ClassMetadata $metadata )
     {
-        $metadata->addPropertyConstraint(
-            'id',
-            new NotNull()
-        );
-        $metadata->addPropertyConstraint(
-            'id',
-            new RealInt()
-        );
-    
         $metadata->addPropertyConstraint(
             'width',
             new NotNull()
