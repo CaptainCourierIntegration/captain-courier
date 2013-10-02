@@ -75,3 +75,14 @@ services:
             - "@db"
         calls:
             - [setContainer, ["@service_container"]]
+
+
+    parcelController:
+        class: CaptainCourier\CaptainBundle\Controller\ParcelController
+        scope: prototype
+        arguments:
+            - "@d"
+            - "@normalityEntityManager"
+            - "@db"        
+        calls:
+            - [setContainer, ["@service_container"]]

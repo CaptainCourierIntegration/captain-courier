@@ -2,3 +2,7 @@
 address:
     prefix: /addresses
     resource: "@CaptainCourierCaptainBundle/Resources/config/routing/Address.yml"
+
+parcel:
+    prefix: /parcels
+    resource: "@CaptainCourierCaptainBundle/Resources/config/routing/Parcel.yml"

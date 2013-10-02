@@ -1,12 +1,5 @@
 <?php
 
-/*
- * (c) Captain Courier Integration <captain@captaincourier.org>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace CaptainCourier\CaptainBundle\Repository\Normality;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -70,7 +63,7 @@ class Shipment extends RM
      * Reference information for this relation
      * @var array
      */
-    protected $references = '{"ShipmentTrackingLog.shipmentId":["ShipmentTrackingLog","shipmentId",1],"Recipt.shipmentId":["Recipt","shipmentId",1],"Item.shipmentId":["Item","shipmentId",1],"AbortStatus.shipmentId":["AbortStatus","shipmentId",1]}';
+    protected $references = '{"AbortStatus.shipmentId":["AbortStatus","shipmentId",1],"Item.shipmentId":["Item","shipmentId",1],"Recipt.shipmentId":["Recipt","shipmentId",1],"ShipmentTrackingLog.shipmentId":["ShipmentTrackingLog","shipmentId",1]}';
     
     /**
      * Options Resolver

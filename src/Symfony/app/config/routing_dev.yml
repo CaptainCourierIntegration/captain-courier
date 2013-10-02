@@ -33,9 +33,9 @@ captainCourierCaptain:
 #     type: rest
 #     resource: "CaptainCourier\\CaptainBundle\\Controller\\AddressController"
 
-parcel:
-    type: rest
-    resource: "CaptainCourier\\CaptainBundle\\Controller\\ParcelController"
+# parcel:
+#     type: rest
+#     resource: "CaptainCourier\\CaptainBundle\\Controller\\ParcelController"
 
 item:
     type: rest

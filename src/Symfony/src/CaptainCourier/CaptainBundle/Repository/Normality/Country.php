@@ -1,12 +1,5 @@
 <?php
 
-/*
- * (c) Captain Courier Integration <captain@captaincourier.org>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace CaptainCourier\CaptainBundle\Repository\Normality;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -66,7 +59,7 @@ class Country extends RM
      * Reference information for this relation
      * @var array
      */
-    protected $references = '{"Item.originCountryCode":["Item","originCountryCode",1],"Address.cc":["Address","cc",1]}';
+    protected $references = '{"Address.cc":["Address","cc",1],"Item.originCountryCode":["Item","originCountryCode",1]}';
     
     /**
      * Options Resolver

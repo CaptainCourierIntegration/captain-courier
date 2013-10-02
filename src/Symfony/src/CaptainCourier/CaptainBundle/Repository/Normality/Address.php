@@ -1,12 +1,5 @@
 <?php
 
-/*
- * (c) Captain Courier Integration <captain@captaincourier.org>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace CaptainCourier\CaptainBundle\Repository\Normality;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -70,13 +63,13 @@ class Address extends RM
      * Normality tags from relation
      * @var array
      */
-    protected $normality = '{"persist":{"references":["Shipment.collectionAddressId","Shipment.deliveryAddressId"]}}';
+    protected $normality = '[]';
     
     /**
      * Reference information for this relation
      * @var array
      */
-    protected $references = '{"Shipment.collectionAddressId":["Shipment","collectionAddressId",1],"Shipment.deliveryAddressId":["Shipment","deliveryAddressId",1]}';
+    protected $references = '{"Shipment.deliveryAddressId":["Shipment","deliveryAddressId",1],"Shipment.collectionAddressId":["Shipment","collectionAddressId",1]}';
     
     /**
      * Options Resolver
