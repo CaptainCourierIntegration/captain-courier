@@ -29,7 +29,6 @@ class Item extends Base implements SqlInterface
      */
     protected $data = array(
         'id' => null, # PK;
-        'shipmentId' => null, # references Shipment.id
         'description' => null,
         'quantity' => null,
         'weight' => null,
@@ -58,19 +57,6 @@ class Item extends Base implements SqlInterface
     */
     protected static function _loadValidatorMetadata( ClassMetadata $metadata )
     {
-        $metadata->addPropertyConstraint(
-            'shipmentId',
-            new NotNull()
-        );
-        $metadata->addPropertyConstraint(
-            'shipmentId',
-            new Type(
-                array(
-                    'type' => 'CaptainCourier\\CaptainBundle\\Entity\\Shipment',
-                )
-            )
-        );
-    
         $metadata->addPropertyConstraint(
             'description',
             new NotNull()
@@ -132,15 +118,6 @@ class Item extends Base implements SqlInterface
     }
     
     /**
-     * Is a zombie object?
-     * @inheritDoc
-     */
-    public function isZombie()
-    {
-        return ( null === $this->data['shipmentId'] );
-    }
-    
-    /**
      * Get entity property
      * {@inheritDoc}
      */
@@ -148,10 +125,6 @@ class Item extends Base implements SqlInterface
     {
         switch( $key ) {
     
-            case 'Shipment':
-                $key = 'shipmentId';
-                break;
-            
             case 'Country':
                 $key = 'originCountryCode';
                 break;
@@ -166,7 +139,6 @@ class Item extends Base implements SqlInterface
     function getId() { return $this->get('id'); }
     function getOriginCountryCode() { return $this->get('originCountryCode'); }
     function getQuantity() { return $this->get('quantity'); }
-    function getShipmentId() { return $this->get('shipmentId'); }
     function getWeight() { return $this->get('weight'); }
     
     /**
@@ -227,43 +199,6 @@ class Item extends Base implements SqlInterface
     }
     
     /**
-     * 'get' callback for $this->data['shipmentId']
-     * @param scalar
-     * @return \CaptainCourier\CaptainBundle\Entity\Shipment
-     */
-    protected function get_shipmentId( &$value )
-    {
-        if( !is_object( $value ) ) {
-            $value = $this->entityManager->find( '\CaptainCourier\CaptainBundle\Entity\Shipment', $value );
-        }
-        return $value;
-    }
-    
-    /**
-     * 'set' callback for $this->data['shipmentId']
-     * @param mixed $value
-     * @return Shipment
-     */
-    protected function set_shipmentId( $value )
-    {
-        if( $value instanceof \CaptainCourier\CaptainBundle\Entity\Shipment ) {
-            return $value;
-        } elseif( is_scalar( $value ) ) {
-            return $this->entityManager->find('\CaptainCourier\CaptainBundle\Entity\Shipment', $value);
-            // return \CaptainCourier\CaptainBundle\Entity\Shipment::r()->find( $value ); // old stylee
-        } elseif( is_array( $value ) ) {
-            $entity = $this->get('shipmentId');
-            if( !$entity ) {
-                return $this->entityManager->make('\CaptainCourier\CaptainBundle\Entity\Shipment');
-                // $entity = \CaptainCourier\CaptainBundle\Entity\Shipment::r()->make(); // old stylee
-            }
-            $entity->set( $value, null, self::VALIDATE_STRIP );
-            return $entity;
-        }
-        return null;
-    }
-    
-    /**
      * Impementation of interface \Bond\Pg\Query->Validate()
      * @return scalar
      */
@@ -280,10 +215,6 @@ class Item extends Base implements SqlInterface
     {
         switch( $key ) {
     
-            case 'Shipment':
-                $key = 'shipmentId';
-                break;
-            
             case 'Country':
                 $key = 'originCountryCode';
                 break;
@@ -298,7 +229,6 @@ class Item extends Base implements SqlInterface
     function setId($value) { return $this->set('id',$value); }
     function setOriginCountryCode($value) { return $this->set('originCountryCode',$value); }
     function setQuantity($value) { return $this->set('quantity',$value); }
-    function setShipmentId($value) { return $this->set('shipmentId',$value); }
     function setWeight($value) { return $this->set('weight',$value); }
     
 }

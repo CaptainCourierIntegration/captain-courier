@@ -69,7 +69,7 @@ class Address extends RM
      * Reference information for this relation
      * @var array
      */
-    protected $references = '{"Shipment.deliveryAddressId":["Shipment","deliveryAddressId",1],"Shipment.collectionAddressId":["Shipment","collectionAddressId",1]}';
+    protected $references = '{"Shipment.collectionAddressId":["Shipment","collectionAddressId",1],"Shipment.deliveryAddressId":["Shipment","deliveryAddressId",1]}';
     
     /**
      * Options Resolver

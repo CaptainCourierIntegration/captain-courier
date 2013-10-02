@@ -59,7 +59,7 @@ class Country extends RM
      * Reference information for this relation
      * @var array
      */
-    protected $references = '{"Address.cc":["Address","cc",1],"Item.originCountryCode":["Item","originCountryCode",1]}';
+    protected $references = '{"Item.originCountryCode":["Item","originCountryCode",1],"Address.cc":["Address","cc",1]}';
     
     /**
      * Options Resolver

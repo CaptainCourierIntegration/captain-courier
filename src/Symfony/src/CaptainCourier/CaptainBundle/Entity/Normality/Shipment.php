@@ -27,14 +27,14 @@ class Shipment extends Base implements SqlInterface
      * Additional properties
      * @var array
      */
-    protected static $additionalProperties = ['AbortStatuss', 'Items', 'Recipts', 'ShipmentTrackingLogs'];
+    protected static $additionalProperties = ['ShipmentTrackingLogs', 'Recipts', 'AbortStatuss'];
     
     /**
      * Columns defined in captain.Shipment
      * @var array
      */
     protected $data = array(
-        'id' => null, # PK; is referenced by AbortStatus.shipmentId, Item.shipmentId, Recipt.shipmentId, ShipmentTrackingLog.shipmentId
+        'id' => null, # PK; is referenced by ShipmentTrackingLog.shipmentId, Recipt.shipmentId, AbortStatus.shipmentId
         'collectionAddressId' => null, # references Address.id
         'collectionTime' => null,
         'deliveryAddressId' => null, # references Address.id
@@ -168,17 +168,14 @@ class Shipment extends Base implements SqlInterface
                 $key = 'deliveryAddressId';
                 break;
             
-            case 'AbortStatuss':
-                return $this->r()->referencesGet( $this, 'AbortStatus.shipmentId' );
-            
-            case 'Items':
-                return $this->r()->referencesGet( $this, 'Item.shipmentId' );
+            case 'ShipmentTrackingLogs':
+                return $this->r()->referencesGet( $this, 'ShipmentTrackingLog.shipmentId' );
             
             case 'Recipts':
                 return $this->r()->referencesGet( $this, 'Recipt.shipmentId' );
             
-            case 'ShipmentTrackingLogs':
-                return $this->r()->referencesGet( $this, 'ShipmentTrackingLog.shipmentId' );
+            case 'AbortStatuss':
+                return $this->r()->referencesGet( $this, 'AbortStatus.shipmentId' );
             
         }
         return parent::get( $key, $inputValidate, $source, $task );
@@ -331,17 +328,14 @@ class Shipment extends Base implements SqlInterface
                 $key = 'deliveryAddressId';
                 break;
             
-            case 'AbortStatuss':
-                return StaticMethods::set_references( $this, 'AbortStatus.shipmentId', $value );
-            
-            case 'Items':
-                return StaticMethods::set_references( $this, 'Item.shipmentId', $value );
+            case 'ShipmentTrackingLogs':
+                return StaticMethods::set_references( $this, 'ShipmentTrackingLog.shipmentId', $value );
             
             case 'Recipts':
                 return StaticMethods::set_references( $this, 'Recipt.shipmentId', $value );
             
-            case 'ShipmentTrackingLogs':
-                return StaticMethods::set_references( $this, 'ShipmentTrackingLog.shipmentId', $value );
+            case 'AbortStatuss':
+                return StaticMethods::set_references( $this, 'AbortStatus.shipmentId', $value );
             
         }
         return parent::set( $key, $value, $inputValidate );
