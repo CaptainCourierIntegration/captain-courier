@@ -28,14 +28,14 @@ class Country extends Base implements SqlInterface
      * Additional properties
      * @var array
      */
-    protected static $additionalProperties = ['Addresss', 'Items'];
+    protected static $additionalProperties = ['Items', 'Addresss'];
     
     /**
      * Columns defined in captain.Country
      * @var array
      */
     protected $data = array(
-        'cc' => null, # PK; is referenced by Address.cc, Item.originCountryCode
+        'cc' => null, # PK; is referenced by Item.originCountryCode, Address.cc
         'cc3' => null,
         'countryName' => null,
     );
@@ -127,11 +127,11 @@ class Country extends Base implements SqlInterface
     {
         switch( $key ) {
     
-            case 'Addresss':
-                return $this->r()->referencesGet( $this, 'Address.cc' );
-            
             case 'Items':
                 return $this->r()->referencesGet( $this, 'Item.originCountryCode' );
+            
+            case 'Addresss':
+                return $this->r()->referencesGet( $this, 'Address.cc' );
             
         }
         return parent::get( $key, $inputValidate, $source, $task );
@@ -158,11 +158,11 @@ class Country extends Base implements SqlInterface
     {
         switch( $key ) {
     
-            case 'Addresss':
-                return StaticMethods::set_references( $this, 'Address.cc', $value );
-            
             case 'Items':
                 return StaticMethods::set_references( $this, 'Item.originCountryCode', $value );
+            
+            case 'Addresss':
+                return StaticMethods::set_references( $this, 'Address.cc', $value );
             
         }
         return parent::set( $key, $value, $inputValidate );

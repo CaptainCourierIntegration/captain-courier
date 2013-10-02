@@ -7,13 +7,13 @@ use \Bond\Repository\Multiton as RM;
 
 /**
  * ConnectionInfo captain@captain:localhost,
- * Relation captain.Item
+ * Relation captain.ItemLinkShipment
  */
-class Item extends RM
+class ItemLinkShipment extends RM
 {    
 
     const PARENT = null;
-    const TABLE = 'captain.Item';
+    const TABLE = 'captain.ItemLinkShipment';
     
     /**
      * API options from relation
@@ -26,13 +26,9 @@ class Item extends RM
      * @var array
      */
     protected $dataTypes = [
-        'id' => '["id","Item","Item.id",{"type":"int","isPrimaryKey":true,"isUnique":true,"default":"nextval(\'\\"seq_Item_id\\"\'::regclass)"}]',
-        'description' => '["description","Item","Item.description",{"type":"citext"}]',
-        'quantity' => '["quantity","Item","Item.quantity",{"type":"int"}]',
-        'weight' => '["weight","Item","Item.weight",{"type":"int"}]',
-        'originCountryCode' => '["originCountryCode","Item","Item.originCountryCode",{"type":"text","isNullable":true,"length":2,"entity":"normality","normality":"Country"}]',
-        'hsTarrifNumber' => '["hsTarrifNumber","Item","Item.hsTarrifNumber",{"type":"citext","isNullable":true}]',
-        'createdTimestamp' => '["createdTimestamp","Item","Item.createdTimestamp",{"type":"timestamp","isNullable":true,"default":"now()","entity":"DateTime"}]',
+        'itemId' => '["itemId","ItemLinkShipment","ItemLinkShipment.itemId",{"type":"int","isPrimaryKey":true}]',
+        'shipmentId' => '["shipmentId","ItemLinkShipment","ItemLinkShipment.shipmentId",{"type":"int","isPrimaryKey":true}]',
+        'createTimestamp' => '["createTimestamp","ItemLinkShipment","ItemLinkShipment.createTimestamp",{"type":"timestamp","default":"now()","entity":"DateTime"}]',
     ];
     
     /**
@@ -45,7 +41,7 @@ class Item extends RM
      * Initial properties to be stored by a entity.
      * @var array
      */
-    protected $initialProperties = ['originCountryCode'];
+    protected $initialProperties = [];
     
     /**
      * Link information for this relation
@@ -83,17 +79,13 @@ class Item extends RM
             $resolver = new OptionsResolver();                        
             $resolver->setRequired(
                 array(
-                    0 => 'description',
-                    1 => 'quantity',
-                    2 => 'weight',
+                    0 => 'itemId',
+                    1 => 'shipmentId',
                 )
             );                        
             $resolver->setOptional(
                 array(
-                    0 => 'id',
-                    1 => 'originCountryCode',
-                    2 => 'hsTarrifNumber',
-                    3 => 'createdTimestamp',
+                    0 => 'createTimestamp',
                 )
             );
             $this->resolver = $resolver;

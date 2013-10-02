@@ -66,9 +66,8 @@ services:
             - hello/world
             - {}
 
-    addressController:
-        class: CaptainCourier\CaptainBundle\Controller\AddressController
-        scope: prototype
+    controllerDef:
+        abstract: true
         arguments:
             - "@d"
             - "@normalityEntityManager"
@@ -76,13 +75,17 @@ services:
         calls:
             - [setContainer, ["@service_container"]]
 
+    addressController:
+        class: CaptainCourier\CaptainBundle\Controller\AddressController        
+        parent: controllerDef
+        scope: prototype        
 
     parcelController:
         class: CaptainCourier\CaptainBundle\Controller\ParcelController
-        scope: prototype
-        arguments:
-            - "@d"
-            - "@normalityEntityManager"
-            - "@db"        
-        calls:
-            - [setContainer, ["@service_container"]]
+        parent: controllerDef
+        scope: prototype        
+
+    itemController:
+        class: CaptainCourier\CaptainBundle\Controller\ItemController
+        parent: controllerDef
+        scope: prototype        

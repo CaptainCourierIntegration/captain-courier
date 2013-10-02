@@ -15,7 +15,6 @@ CACHE 1;
 
 CREATE TABLE "Item" (
 	id int NOT NULL DEFAULT nextval('"seq_Item_id"'::regclass),
-	"shipmentId" int NOT NULL,
 	description citext NOT NULL,
 	quantity int NOT NULL,
 	weight int NOT NULL,
@@ -23,11 +22,8 @@ CREATE TABLE "Item" (
 	"hsTarrifNumber" citext,
 	"createdTimestamp" timestamp DEFAULT now(),
 	CONSTRAINT "pk_Item" primary key (id),
-	CONSTRAINT "fk_Item_shipmentId" FOREIGN KEY ("shipmentId") REFERENCES "Shipment" (id),
 	CONSTRAINT "fk_Item_originCountryCode" FOREIGN KEY ("originCountryCode") REFERENCES "Country" ("cc")
 );
 
 ALTER SEQUENCE "seq_Item_id" OWNED BY "Item"."id";
-
-CREATE INDEX "idx_Item_parcelId" ON "Item" USING BTREE ("shipmentId");
 CREATE INDEX "idx_Item_originCountryCode" ON "Item" USING BTREE ("originCountryCode")

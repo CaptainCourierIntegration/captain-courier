@@ -24,13 +24,6 @@ class ParcelController extends RestController
 		$this->database = $database;
 	}	
 
-	// view
-	public function getAction($id)
-	{
-		return $this->response;
-	}
-
-
 	/**
 	 *
 	 * creates a parcel
@@ -42,6 +35,15 @@ class ParcelController extends RestController
 	 *   - *weight in grams
 	 *   - *value in sterling(£)
 	 *
+	 * RESPONSE
+	 *   - id
+	 *   - type: Parcel
+	 *   - width
+	 *   - height
+	 *   - length
+	 *   - weight
+	 *   - value
+	 *
 	 */
 	public function createParcelAction()
 	{
@@ -51,8 +53,11 @@ class ParcelController extends RestController
 		$this->d->log($parcel);
 		$this->entityManager->recordManager->persist($parcel);
 		$this->entityManager->recordManager->flush();
+
+		$responseData = json_decode(json_encode($parcel));
+		$responseData->type = "Parcel";
 		return new Response(
-			json_encode($content),
+			json_encode($responseData),
 			200,
 			array('content-type' => "application/json")
 		);
