@@ -29,6 +29,7 @@ class Quote extends RM
         'id' => '["id","Quote","Quote.id",{"type":"int","isPrimaryKey":true,"isUnique":true,"default":"nextval(\'\\"seq_Quote_id\\"\'::regclass)"}]',
         'serviceId' => '["serviceId","Quote","Quote.serviceId",{"type":"int","isNullable":true,"entity":"normality","normality":"Service"}]',
         'quote' => '["quote","Quote","Quote.quote",{"type":"numeric"}]',
+        'serviceCode' => '["serviceCode","Quote","Quote.serviceCode",{"type":"citext"}]',
         'collectionTimestamp' => '["collectionTimestamp","Quote","Quote.collectionTimestamp",{"type":"timestamp","entity":"DateTime"}]',
     ];
     
@@ -60,7 +61,7 @@ class Quote extends RM
      * Reference information for this relation
      * @var array
      */
-    protected $references = '[]';
+    protected $references = '{"Recipt.quoteId":["Recipt","quoteId",1]}';
     
     /**
      * Options Resolver
@@ -81,7 +82,8 @@ class Quote extends RM
             $resolver->setRequired(
                 array(
                     0 => 'quote',
-                    1 => 'collectionTimestamp',
+                    1 => 'serviceCode',
+                    2 => 'collectionTimestamp',
                 )
             );                        
             $resolver->setOptional(

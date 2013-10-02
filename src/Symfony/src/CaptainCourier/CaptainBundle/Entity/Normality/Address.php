@@ -44,6 +44,8 @@ class Address extends Base implements SqlInterface
         'line3' => null,
         'line4' => null,
         'line5' => null,
+        'town' => null,
+        'county' => null,
         'postcode' => null,
         'cc' => null, # references Country.cc
         'createdTimestamp' => null,
@@ -155,6 +157,24 @@ class Address extends Base implements SqlInterface
         );
     
         $metadata->addPropertyConstraint(
+            'town',
+            new Type(
+                array(
+                    'type' => 'string',
+                )
+            )
+        );
+    
+        $metadata->addPropertyConstraint(
+            'county',
+            new Type(
+                array(
+                    'type' => 'string',
+                )
+            )
+        );
+    
+        $metadata->addPropertyConstraint(
             'postcode',
             new NotNull()
         );
@@ -224,6 +244,7 @@ class Address extends Base implements SqlInterface
     
     function getCc() { return $this->get('cc'); }
     function getCompanyName() { return $this->get('companyName'); }
+    function getCounty() { return $this->get('county'); }
     function getCreatedTimestamp() { return $this->get('createdTimestamp'); }
     function getEmail() { return $this->get('email'); }
     function getId() { return $this->get('id'); }
@@ -235,6 +256,7 @@ class Address extends Base implements SqlInterface
     function getName() { return $this->get('name'); }
     function getPhone() { return $this->get('phone'); }
     function getPostcode() { return $this->get('postcode'); }
+    function getTown() { return $this->get('town'); }
     
     /**
      * 'get' callback for $this->data['cc']
@@ -326,6 +348,7 @@ class Address extends Base implements SqlInterface
     
     function setCc($value) { return $this->set('cc',$value); }
     function setCompanyName($value) { return $this->set('companyName',$value); }
+    function setCounty($value) { return $this->set('county',$value); }
     function setCreatedTimestamp($value) { return $this->set('createdTimestamp',$value); }
     function setEmail($value) { return $this->set('email',$value); }
     function setId($value) { return $this->set('id',$value); }
@@ -337,5 +360,6 @@ class Address extends Base implements SqlInterface
     function setName($value) { return $this->set('name',$value); }
     function setPhone($value) { return $this->set('phone',$value); }
     function setPostcode($value) { return $this->set('postcode',$value); }
+    function setTown($value) { return $this->set('town',$value); }
     
 }

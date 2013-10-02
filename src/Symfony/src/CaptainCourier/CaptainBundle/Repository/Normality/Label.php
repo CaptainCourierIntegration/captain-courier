@@ -62,7 +62,7 @@ class Label extends RM
      * Reference information for this relation
      * @var array
      */
-    protected $references = '{"Recipt.labelId":["Recipt","labelId",1]}';
+    protected $references = '[]';
     
     /**
      * Options Resolver

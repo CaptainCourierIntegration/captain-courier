@@ -5,7 +5,6 @@ namespace CaptainCourier\CaptainBundle\Entity\Normality;
 use Bond\Bridge\Normality\Constraint\RealInt;
 use Bond\Entity\Base;
 use Bond\Entity\StaticMethods;
-use Bond\Repository;
 use Bond\Sql\QuoteInterface;
 use Bond\Sql\SqlInterface;
 use Symfony\Component\Validator\Constraints\Type;
@@ -24,17 +23,11 @@ class Label extends Base implements SqlInterface
     const ENTITY_FILESTORE = '/home/captain/CaptainCourier/captain-courier/src/Symfony/src/CaptainCourier/CaptainBundle/EntityFileStore/Label';
     
     /**
-     * Additional properties
-     * @var array
-     */
-    protected static $additionalProperties = ['Recipts'];
-    
-    /**
      * Columns defined in captain.Label
      * @var array
      */
     protected $data = array(
-        'id' => null, # PK; is referenced by Recipt.labelId
+        'id' => null, # PK;
         'resolution' => null,
         'size' => null,
         'type' => null,
@@ -111,12 +104,6 @@ class Label extends Base implements SqlInterface
      */
     public function get( $key, $inputValidate = null, $source = null, \Bond\RecordManager\Task $task = null )
     {
-        switch( $key ) {
-    
-            case 'Recipts':
-                return $this->r()->referencesGet( $this, 'Recipt.labelId' );
-            
-        }
         return parent::get( $key, $inputValidate, $source, $task );
     }
     
@@ -162,12 +149,6 @@ class Label extends Base implements SqlInterface
      */
     public function set( $key, $value = null, $inputValidate = null )
     {
-        switch( $key ) {
-    
-            case 'Recipts':
-                return StaticMethods::set_references( $this, 'Recipt.labelId', $value );
-            
-        }
         return parent::set( $key, $value, $inputValidate );
     }
     

@@ -27,14 +27,14 @@ class Shipment extends Base implements SqlInterface
      * Additional properties
      * @var array
      */
-    protected static $additionalProperties = ['ShipmentTrackingLogs', 'Recipts', 'AbortStatuss'];
+    protected static $additionalProperties = ['ShipmentTrackingLogs', 'AbortStatuss'];
     
     /**
      * Columns defined in captain.Shipment
      * @var array
      */
     protected $data = array(
-        'id' => null, # PK; is referenced by ShipmentTrackingLog.shipmentId, Recipt.shipmentId, AbortStatus.shipmentId
+        'id' => null, # PK; is referenced by ShipmentTrackingLog.shipmentId, AbortStatus.shipmentId
         'collectionAddressId' => null, # references Address.id
         'collectionTime' => null,
         'deliveryAddressId' => null, # references Address.id
@@ -170,9 +170,6 @@ class Shipment extends Base implements SqlInterface
             
             case 'ShipmentTrackingLogs':
                 return $this->r()->referencesGet( $this, 'ShipmentTrackingLog.shipmentId' );
-            
-            case 'Recipts':
-                return $this->r()->referencesGet( $this, 'Recipt.shipmentId' );
             
             case 'AbortStatuss':
                 return $this->r()->referencesGet( $this, 'AbortStatus.shipmentId' );
@@ -330,9 +327,6 @@ class Shipment extends Base implements SqlInterface
             
             case 'ShipmentTrackingLogs':
                 return StaticMethods::set_references( $this, 'ShipmentTrackingLog.shipmentId', $value );
-            
-            case 'Recipts':
-                return StaticMethods::set_references( $this, 'Recipt.shipmentId', $value );
             
             case 'AbortStatuss':
                 return StaticMethods::set_references( $this, 'AbortStatus.shipmentId', $value );

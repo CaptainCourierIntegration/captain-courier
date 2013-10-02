@@ -36,6 +36,8 @@ class Address extends RM
         'line3' => '["line3","Address","Address.line3",{"type":"citext","isNullable":true}]',
         'line4' => '["line4","Address","Address.line4",{"type":"citext","isNullable":true}]',
         'line5' => '["line5","Address","Address.line5",{"type":"citext","isNullable":true}]',
+        'town' => '["town","Address","Address.town",{"type":"citext","isNullable":true}]',
+        'county' => '["county","Address","Address.county",{"type":"citext","isNullable":true}]',
         'postcode' => '["postcode","Address","Address.postcode",{"type":"citext"}]',
         'cc' => '["cc","Address","Address.cc",{"type":"text","length":2,"entity":"normality","normality":"Country"}]',
         'createdTimestamp' => '["createdTimestamp","Address","Address.createdTimestamp",{"type":"timestamp","isNullable":true,"default":"now()","entity":"DateTime"}]',
@@ -105,7 +107,9 @@ class Address extends RM
                     6 => 'line3',
                     7 => 'line4',
                     8 => 'line5',
-                    9 => 'createdTimestamp',
+                    9 => 'town',
+                    10 => 'county',
+                    11 => 'createdTimestamp',
                 )
             );
             $this->resolver = $resolver;

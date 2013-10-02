@@ -4,6 +4,7 @@ namespace CaptainCourier\CaptainBundle\Entity\Normality;
 
 use Bond\Entity\Base;
 use Bond\Entity\StaticMethods;
+use Bond\Repository;
 use Bond\Sql\QuoteInterface;
 use Bond\Sql\SqlInterface;
 use Symfony\Component\Validator\Constraints\NotNull;
@@ -23,13 +24,20 @@ class Quote extends Base implements SqlInterface
     const ENTITY_FILESTORE = '/home/captain/CaptainCourier/captain-courier/src/Symfony/src/CaptainCourier/CaptainBundle/EntityFileStore/Quote';
     
     /**
+     * Additional properties
+     * @var array
+     */
+    protected static $additionalProperties = ['Recipts'];
+    
+    /**
      * Columns defined in captain.Quote
      * @var array
      */
     protected $data = array(
-        'id' => null, # PK;
+        'id' => null, # PK; is referenced by Recipt.quoteId
         'serviceId' => null, # references Service.id
         'quote' => null,
+        'serviceCode' => null,
         'collectionTimestamp' => null,
     );
     
@@ -68,6 +76,19 @@ class Quote extends Base implements SqlInterface
         );
     
         $metadata->addPropertyConstraint(
+            'serviceCode',
+            new NotNull()
+        );
+        $metadata->addPropertyConstraint(
+            'serviceCode',
+            new Type(
+                array(
+                    'type' => 'string',
+                )
+            )
+        );
+    
+        $metadata->addPropertyConstraint(
             'collectionTimestamp',
             new NotNull()
         );
@@ -94,6 +115,9 @@ class Quote extends Base implements SqlInterface
                 $key = 'serviceId';
                 break;
             
+            case 'Recipts':
+                return $this->r()->referencesGet( $this, 'Recipt.quoteId' );
+            
         }
         return parent::get( $key, $inputValidate, $source, $task );
     }
@@ -101,6 +125,7 @@ class Quote extends Base implements SqlInterface
     function getCollectionTimestamp() { return $this->get('collectionTimestamp'); }
     function getId() { return $this->get('id'); }
     function getQuote() { return $this->get('quote'); }
+    function getServiceCode() { return $this->get('serviceCode'); }
     function getServiceId() { return $this->get('serviceId'); }
     
     /**
@@ -181,6 +206,9 @@ class Quote extends Base implements SqlInterface
                 $key = 'serviceId';
                 break;
             
+            case 'Recipts':
+                return StaticMethods::set_references( $this, 'Recipt.quoteId', $value );
+            
         }
         return parent::set( $key, $value, $inputValidate );
     }
@@ -188,6 +216,7 @@ class Quote extends Base implements SqlInterface
     function setCollectionTimestamp($value) { return $this->set('collectionTimestamp',$value); }
     function setId($value) { return $this->set('id',$value); }
     function setQuote($value) { return $this->set('quote',$value); }
+    function setServiceCode($value) { return $this->set('serviceCode',$value); }
     function setServiceId($value) { return $this->set('serviceId',$value); }
     
 }

@@ -5,6 +5,7 @@ namespace CaptainCourier\CaptainBundle\Entity\Normality;
 use Bond\Entity\Base;
 use Bond\Sql\QuoteInterface;
 use Bond\Sql\SqlInterface;
+use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
@@ -26,8 +27,8 @@ class Recipt extends Base implements SqlInterface
      */
     protected $data = array(
         'id' => null, # PK;
-        'shipmentId' => null, # references Shipment.id
-        'labelId' => null, # references Label.id
+        'quoteId' => null, # references Quote.id
+        'contractNumber' => null,
     );
     
     /**
@@ -51,19 +52,23 @@ class Recipt extends Base implements SqlInterface
     protected static function _loadValidatorMetadata( ClassMetadata $metadata )
     {
         $metadata->addPropertyConstraint(
-            'shipmentId',
+            'quoteId',
             new Type(
                 array(
-                    'type' => 'CaptainCourier\\CaptainBundle\\Entity\\Shipment',
+                    'type' => 'CaptainCourier\\CaptainBundle\\Entity\\Quote',
                 )
             )
         );
     
         $metadata->addPropertyConstraint(
-            'labelId',
+            'contractNumber',
+            new NotNull()
+        );
+        $metadata->addPropertyConstraint(
+            'contractNumber',
             new Type(
                 array(
-                    'type' => 'CaptainCourier\\CaptainBundle\\Entity\\Label',
+                    'type' => 'string',
                 )
             )
         );
@@ -78,89 +83,48 @@ class Recipt extends Base implements SqlInterface
     {
         switch( $key ) {
     
-            case 'Shipment':
-                $key = 'shipmentId';
-                break;
-            
-            case 'Label':
-                $key = 'labelId';
+            case 'Quote':
+                $key = 'quoteId';
                 break;
             
         }
         return parent::get( $key, $inputValidate, $source, $task );
     }
     
+    function getContractNumber() { return $this->get('contractNumber'); }
     function getId() { return $this->get('id'); }
-    function getLabelId() { return $this->get('labelId'); }
-    function getShipmentId() { return $this->get('shipmentId'); }
+    function getQuoteId() { return $this->get('quoteId'); }
     
     /**
-     * 'get' callback for $this->data['labelId']
+     * 'get' callback for $this->data['quoteId']
      * @param scalar
-     * @return \CaptainCourier\CaptainBundle\Entity\Label
+     * @return \CaptainCourier\CaptainBundle\Entity\Quote
      */
-    protected function get_labelId( &$value )
+    protected function get_quoteId( &$value )
     {
         if( !is_object( $value ) ) {
-            $value = $this->entityManager->find( '\CaptainCourier\CaptainBundle\Entity\Label', $value );
+            $value = $this->entityManager->find( '\CaptainCourier\CaptainBundle\Entity\Quote', $value );
         }
         return $value;
     }
     
     /**
-     * 'set' callback for $this->data['labelId']
+     * 'set' callback for $this->data['quoteId']
      * @param mixed $value
-     * @return Label
+     * @return Quote
      */
-    protected function set_labelId( $value )
+    protected function set_quoteId( $value )
     {
-        if( $value instanceof \CaptainCourier\CaptainBundle\Entity\Label ) {
+        if( $value instanceof \CaptainCourier\CaptainBundle\Entity\Quote ) {
             return $value;
         } elseif( is_scalar( $value ) ) {
-            return $this->entityManager->find('\CaptainCourier\CaptainBundle\Entity\Label', $value);
-            // return \CaptainCourier\CaptainBundle\Entity\Label::r()->find( $value ); // old stylee
+            return $this->entityManager->find('\CaptainCourier\CaptainBundle\Entity\Quote', $value);
+            // return \CaptainCourier\CaptainBundle\Entity\Quote::r()->find( $value ); // old stylee
         } elseif( is_array( $value ) ) {
-            $entity = $this->get('labelId');
+            $entity = $this->get('quoteId');
             if( !$entity ) {
-                return $this->entityManager->make('\CaptainCourier\CaptainBundle\Entity\Label');
-                // $entity = \CaptainCourier\CaptainBundle\Entity\Label::r()->make(); // old stylee
-            }
-            $entity->set( $value, null, self::VALIDATE_STRIP );
-            return $entity;
-        }
-        return null;
-    }
-    
-    /**
-     * 'get' callback for $this->data['shipmentId']
-     * @param scalar
-     * @return \CaptainCourier\CaptainBundle\Entity\Shipment
-     */
-    protected function get_shipmentId( &$value )
-    {
-        if( !is_object( $value ) ) {
-            $value = $this->entityManager->find( '\CaptainCourier\CaptainBundle\Entity\Shipment', $value );
-        }
-        return $value;
-    }
-    
-    /**
-     * 'set' callback for $this->data['shipmentId']
-     * @param mixed $value
-     * @return Shipment
-     */
-    protected function set_shipmentId( $value )
-    {
-        if( $value instanceof \CaptainCourier\CaptainBundle\Entity\Shipment ) {
-            return $value;
-        } elseif( is_scalar( $value ) ) {
-            return $this->entityManager->find('\CaptainCourier\CaptainBundle\Entity\Shipment', $value);
-            // return \CaptainCourier\CaptainBundle\Entity\Shipment::r()->find( $value ); // old stylee
-        } elseif( is_array( $value ) ) {
-            $entity = $this->get('shipmentId');
-            if( !$entity ) {
-                return $this->entityManager->make('\CaptainCourier\CaptainBundle\Entity\Shipment');
-                // $entity = \CaptainCourier\CaptainBundle\Entity\Shipment::r()->make(); // old stylee
+                return $this->entityManager->make('\CaptainCourier\CaptainBundle\Entity\Quote');
+                // $entity = \CaptainCourier\CaptainBundle\Entity\Quote::r()->make(); // old stylee
             }
             $entity->set( $value, null, self::VALIDATE_STRIP );
             return $entity;
@@ -185,20 +149,16 @@ class Recipt extends Base implements SqlInterface
     {
         switch( $key ) {
     
-            case 'Shipment':
-                $key = 'shipmentId';
-                break;
-            
-            case 'Label':
-                $key = 'labelId';
+            case 'Quote':
+                $key = 'quoteId';
                 break;
             
         }
         return parent::set( $key, $value, $inputValidate );
     }
     
+    function setContractNumber($value) { return $this->set('contractNumber',$value); }
     function setId($value) { return $this->set('id',$value); }
-    function setLabelId($value) { return $this->set('labelId',$value); }
-    function setShipmentId($value) { return $this->set('shipmentId',$value); }
+    function setQuoteId($value) { return $this->set('quoteId',$value); }
     
 }
