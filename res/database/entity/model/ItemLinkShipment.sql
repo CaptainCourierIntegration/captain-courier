@@ -12,4 +12,3 @@ CREATE TABLE "ItemLinkShipment" (
 	"createTimestamp" timestamp NOT NULL DEFAULT now(),
 	CONSTRAINT "pk_ItemLinkShipment" PRIMARY KEY ("itemId", "shipmentId")
 );
-

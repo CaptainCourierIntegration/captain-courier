@@ -6,14 +6,14 @@
 */
 
 CREATE SEQUENCE "seq_Address_id"
-START WITH 1
-INCREMENT BY 1
-NO MINVALUE
-NO MAXVALUE
-CACHE 1;
+	START WITH 1
+	INCREMENT BY 1
+	NO MINVALUE
+	NO MAXVALUE
+	CACHE 1;
 
 CREATE TABLE "Address" (
-	"id" int NOT NULL DEFAULT nextval('"seq_Address_id"' :: regclass),
+	"id" int NOT NULL DEFAULT nextval('"seq_Address_id"'::regclass),
 	"companyName" citext,
 	"name" citext,
 	"phone" citext,
@@ -35,7 +35,3 @@ CREATE TABLE "Address" (
 ALTER SEQUENCE "seq_Address_id" OWNED BY "Address".id;
 
 CREATE INDEX "idx_Address_cc" ON "Address" USING BTREE ("cc");
-
-
-
-

@@ -7,14 +7,14 @@
 
 
 CREATE SEQUENCE "seq_Shipment_id"
-START WITH 1
-INCREMENT BY 1
-NO MINVALUE
-NO MAXVALUE
-CACHE 1;
+	START WITH 1
+	INCREMENT BY 1
+	NO MINVALUE
+	NO MAXVALUE
+	CACHE 1;
 
 CREATE TABLE "Shipment" (
-	id int DEFAULT nextval('"seq_Shipment_id"' :: regclass),
+	id int DEFAULT nextval('"seq_Shipment_id"'::regclass),
 	"collectionAddressId" int NOT NULL,
 	"deliveryAddressId" int NOT NULL,
 	"parcelId" int NOT NULL,
