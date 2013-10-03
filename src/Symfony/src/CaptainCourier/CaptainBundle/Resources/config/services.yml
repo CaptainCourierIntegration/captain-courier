@@ -122,7 +122,7 @@ services:
         parent: controllerDef
         scope: prototype        
         arguments:
-            - "@parcelController"
+            - "@parcelApiMapper"
 
     shipmentController:
         class: CaptainCourier\CaptainBundle\Controller\ShipmentController
