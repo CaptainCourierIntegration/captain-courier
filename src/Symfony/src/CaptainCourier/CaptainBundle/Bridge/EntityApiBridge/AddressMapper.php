@@ -1,6 +1,6 @@
 <?php
 
-namespace CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi;
+namespace CaptainCourier\CaptainBundle\Bridge\EntityApiBridge;
 
 use Bond\Entity\Base;
 
