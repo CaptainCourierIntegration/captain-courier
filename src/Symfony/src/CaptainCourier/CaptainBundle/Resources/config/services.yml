@@ -117,6 +117,8 @@ services:
         class: CaptainCourier\CaptainBundle\Controller\ParcelController
         parent: controllerDef
         scope: prototype        
+        arguments:
+            - "@parcelController"
 
     shipmentController:
         class: CaptainCourier\CaptainBundle\Controller\ShipmentController

@@ -17,11 +17,19 @@ class ParcelController extends RestController
 	private $entityManager;
 	private $database;
 
-	public function __construct($d, $entityManager, $database)
+	private $parcelApiMapper;
+
+	public function __construct(
+		$d, 
+		$entityManager, 
+		$database, 
+		$parcelApiMapper
+	)
 	{
 		$this->d = $d;
 		$this->entityManager = $entityManager;
 		$this->database = $database;
+		$this->parcelApiMapper = $parcelApiMapper;
 	}	
 
 	/**
@@ -54,10 +62,8 @@ class ParcelController extends RestController
 		$this->entityManager->recordManager->persist($parcel);
 		$this->entityManager->recordManager->flush();
 
-		$responseData = json_decode(json_encode($parcel));
-		$responseData->type = "Parcel";
 		return new Response(
-			json_encode($responseData),
+			json_encode($this->parcelApiMapper->getApiObject($parcel)),
 			200,
 			array('content-type' => "application/json")
 		);
