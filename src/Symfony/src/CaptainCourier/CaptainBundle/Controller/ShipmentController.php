@@ -20,14 +20,16 @@ class ShipmentController extends RestController
 
 	private $d;
 	private $cidr;
+	private $addressApiMapper;
 
-	public function __construct($d, $entityManager, $database, $cidr)
+	public function __construct($d, $entityManager, $database, $cidr, $addressApiMapper)
 	{
 		parent::__construct();
 		$this->d = $d;
 		$this->entityManager = $entityManager;
 		$this->database = $database;
 		$this->cidr = $cidr;
+		$this->addressApiMapper = $addressApiMapper;
 	}
 
 	// $this->entityManager->db;

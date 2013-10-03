@@ -7,6 +7,7 @@ parameters:
 
 services:
 
+    ########### BOND ##########
     inject:
         class: Bond\Di\Inject
 
@@ -66,10 +67,13 @@ services:
             - hello/world
             - {}
 
+    ########### CIDR ##########            
     cidr:
         class: Cidr\Cidr
         scope: prototype
 
+
+    ########### CONTROLLERS ##########
     controllerDef:
         abstract: true
         arguments:
@@ -100,3 +104,13 @@ services:
         scope: prototype
         arguments:
             - "@cidr"
+
+    ########### BRIDGE ##########
+    addressApiMapper:
+        class: CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi\AddressApiMapper
+        scope: prototype
+
+
+
+
+
