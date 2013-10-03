@@ -10,3 +10,7 @@ items:
 parcel:
     prefix: /parcels
     resource: "@CaptainCourierCaptainBundle/Resources/config/routing/Parcel.yml"
+
+shipment:
+    prefix: /shipments
+    resource: "@CaptainCourierCaptainBundle/Resources/config/routing/Shipment.yml"

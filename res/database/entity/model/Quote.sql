@@ -1,7 +1,7 @@
 /** resolver
 {
-	"depends": ["captain", "Service"],
-	"searchPath": "captain"
+	"depends": ["captain", "Service", "citext"],
+	"searchPath": "captain, extension"
 }
 */
 CREATE SEQUENCE "seq_Quote_id"
@@ -16,6 +16,7 @@ CREATE TABLE "Quote" (
 	"id" int DEFAULT nextval('"seq_Quote_id"'::regclass),
 	"serviceId" int,
 	"quote" decimal(8, 2) NOT NULL,
+	"serviceCode" citext NOT NULL,
 	"collectionTimestamp" timestamp NOT NULL,
 	CONSTRAINT "pk_Quote" PRIMARY KEY ("id"),
 	CONSTRAINT "fk_Quote_serviceId" FOREIGN KEY ("serviceId") REFERENCES "Service" ("id")

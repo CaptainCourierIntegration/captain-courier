@@ -27,20 +27,17 @@ class Shipment extends Base implements SqlInterface
      * Additional properties
      * @var array
      */
-    protected static $additionalProperties = ['ShipmentTrackingLogs', 'Recipts', 'AbortStatuss'];
+    protected static $additionalProperties = ['ShipmentTrackingLogs', 'AbortStatuss'];
     
     /**
      * Columns defined in captain.Shipment
      * @var array
      */
     protected $data = array(
-        'id' => null, # PK; is referenced by ShipmentTrackingLog.shipmentId, Recipt.shipmentId, AbortStatus.shipmentId
+        'id' => null, # PK; is referenced by ShipmentTrackingLog.shipmentId, AbortStatus.shipmentId
         'collectionAddressId' => null, # references Address.id
-        'collectionTime' => null,
         'deliveryAddressId' => null, # references Address.id
-        'deliveryTime' => null,
-        'contractNumber' => null,
-        'serviceCode' => null,
+        'parcelId' => null, # references Parcel.id
     );
     
     /**
@@ -77,19 +74,6 @@ class Shipment extends Base implements SqlInterface
         );
     
         $metadata->addPropertyConstraint(
-            'collectionTime',
-            new NotNull()
-        );
-        $metadata->addPropertyConstraint(
-            'collectionTime',
-            new Type(
-                array(
-                    'type' => 'Bond\\Entity\\Types\\DateRange',
-                )
-            )
-        );
-    
-        $metadata->addPropertyConstraint(
             'deliveryAddressId',
             new NotNull()
         );
@@ -103,40 +87,14 @@ class Shipment extends Base implements SqlInterface
         );
     
         $metadata->addPropertyConstraint(
-            'deliveryTime',
+            'parcelId',
             new NotNull()
         );
         $metadata->addPropertyConstraint(
-            'deliveryTime',
+            'parcelId',
             new Type(
                 array(
-                    'type' => 'Bond\\Entity\\Types\\DateRange',
-                )
-            )
-        );
-    
-        $metadata->addPropertyConstraint(
-            'contractNumber',
-            new NotNull()
-        );
-        $metadata->addPropertyConstraint(
-            'contractNumber',
-            new Type(
-                array(
-                    'type' => 'string',
-                )
-            )
-        );
-    
-        $metadata->addPropertyConstraint(
-            'serviceCode',
-            new NotNull()
-        );
-        $metadata->addPropertyConstraint(
-            'serviceCode',
-            new Type(
-                array(
-                    'type' => 'string',
+                    'type' => 'CaptainCourier\\CaptainBundle\\Entity\\Parcel',
                 )
             )
         );
@@ -149,7 +107,7 @@ class Shipment extends Base implements SqlInterface
      */
     public function isZombie()
     {
-        return ( null === $this->data['collectionAddressId'] ) or ( null === $this->data['deliveryAddressId'] );
+        return ( null === $this->data['collectionAddressId'] ) or ( null === $this->data['deliveryAddressId'] ) or ( null === $this->data['parcelId'] );
     }
     
     /**
@@ -168,11 +126,12 @@ class Shipment extends Base implements SqlInterface
                 $key = 'deliveryAddressId';
                 break;
             
+            case 'Parcel':
+                $key = 'parcelId';
+                break;
+            
             case 'ShipmentTrackingLogs':
                 return $this->r()->referencesGet( $this, 'ShipmentTrackingLog.shipmentId' );
-            
-            case 'Recipts':
-                return $this->r()->referencesGet( $this, 'Recipt.shipmentId' );
             
             case 'AbortStatuss':
                 return $this->r()->referencesGet( $this, 'AbortStatus.shipmentId' );
@@ -182,12 +141,9 @@ class Shipment extends Base implements SqlInterface
     }
     
     function getCollectionAddressId() { return $this->get('collectionAddressId'); }
-    function getCollectionTime() { return $this->get('collectionTime'); }
-    function getContractNumber() { return $this->get('contractNumber'); }
     function getDeliveryAddressId() { return $this->get('deliveryAddressId'); }
-    function getDeliveryTime() { return $this->get('deliveryTime'); }
     function getId() { return $this->get('id'); }
-    function getServiceCode() { return $this->get('serviceCode'); }
+    function getParcelId() { return $this->get('parcelId'); }
     
     /**
      * 'get' callback for $this->data['collectionAddressId']
@@ -224,26 +180,6 @@ class Shipment extends Base implements SqlInterface
             return $entity;
         }
         return null;
-    }
-    
-    /**
-     * 'get' callback for $this->data['collectionTime']
-     * @param mixed $value
-     * @return DateRange
-     */
-    protected function get_collectionTime( &$value )
-    {
-        return StaticMethods::get_DateRange( $value );
-    }
-    
-    /**
-     * 'set' callback for $this->data['collectionTime']
-     * @param mixed $value
-     * @return DateRange
-     */
-    protected function set_collectionTime( $value, $inputValidate )
-    {
-        return StaticMethods::set_DateRange( $value, $inputValidate );
     }
     
     /**
@@ -284,23 +220,40 @@ class Shipment extends Base implements SqlInterface
     }
     
     /**
-     * 'get' callback for $this->data['deliveryTime']
-     * @param mixed $value
-     * @return DateRange
+     * 'get' callback for $this->data['parcelId']
+     * @param scalar
+     * @return \CaptainCourier\CaptainBundle\Entity\Parcel
      */
-    protected function get_deliveryTime( &$value )
+    protected function get_parcelId( &$value )
     {
-        return StaticMethods::get_DateRange( $value );
+        if( !is_object( $value ) ) {
+            $value = $this->entityManager->find( '\CaptainCourier\CaptainBundle\Entity\Parcel', $value );
+        }
+        return $value;
     }
     
     /**
-     * 'set' callback for $this->data['deliveryTime']
+     * 'set' callback for $this->data['parcelId']
      * @param mixed $value
-     * @return DateRange
+     * @return Parcel
      */
-    protected function set_deliveryTime( $value, $inputValidate )
+    protected function set_parcelId( $value )
     {
-        return StaticMethods::set_DateRange( $value, $inputValidate );
+        if( $value instanceof \CaptainCourier\CaptainBundle\Entity\Parcel ) {
+            return $value;
+        } elseif( is_scalar( $value ) ) {
+            return $this->entityManager->find('\CaptainCourier\CaptainBundle\Entity\Parcel', $value);
+            // return \CaptainCourier\CaptainBundle\Entity\Parcel::r()->find( $value ); // old stylee
+        } elseif( is_array( $value ) ) {
+            $entity = $this->get('parcelId');
+            if( !$entity ) {
+                return $this->entityManager->make('\CaptainCourier\CaptainBundle\Entity\Parcel');
+                // $entity = \CaptainCourier\CaptainBundle\Entity\Parcel::r()->make(); // old stylee
+            }
+            $entity->set( $value, null, self::VALIDATE_STRIP );
+            return $entity;
+        }
+        return null;
     }
     
     /**
@@ -328,11 +281,12 @@ class Shipment extends Base implements SqlInterface
                 $key = 'deliveryAddressId';
                 break;
             
+            case 'Parcel':
+                $key = 'parcelId';
+                break;
+            
             case 'ShipmentTrackingLogs':
                 return StaticMethods::set_references( $this, 'ShipmentTrackingLog.shipmentId', $value );
-            
-            case 'Recipts':
-                return StaticMethods::set_references( $this, 'Recipt.shipmentId', $value );
             
             case 'AbortStatuss':
                 return StaticMethods::set_references( $this, 'AbortStatus.shipmentId', $value );
@@ -342,11 +296,8 @@ class Shipment extends Base implements SqlInterface
     }
     
     function setCollectionAddressId($value) { return $this->set('collectionAddressId',$value); }
-    function setCollectionTime($value) { return $this->set('collectionTime',$value); }
-    function setContractNumber($value) { return $this->set('contractNumber',$value); }
     function setDeliveryAddressId($value) { return $this->set('deliveryAddressId',$value); }
-    function setDeliveryTime($value) { return $this->set('deliveryTime',$value); }
     function setId($value) { return $this->set('id',$value); }
-    function setServiceCode($value) { return $this->set('serviceCode',$value); }
+    function setParcelId($value) { return $this->set('parcelId',$value); }
     
 }

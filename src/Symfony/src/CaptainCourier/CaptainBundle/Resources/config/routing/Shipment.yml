@@ -1,0 +1,5 @@
+
+createShipment:
+    path: /
+    methods: [POST]
+    defaults: { _controller: shipmentController:createShipmentAction , _format: json }

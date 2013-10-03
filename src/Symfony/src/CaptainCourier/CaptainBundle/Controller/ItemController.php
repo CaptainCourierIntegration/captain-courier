@@ -14,11 +14,9 @@ use Bond\Sql\Query;
 use Bond\Pg\Result;
 
 class ItemController extends RestController
-{
+{ use NormalityAware;
 
 	private $d;
-	private $entityManager;
-	private $database;
 
 	public function __construct($d, $entityManager, $database)
 	{

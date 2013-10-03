@@ -23,8 +23,10 @@ CREATE TABLE "Address" (
 	line3 citext,
 	line4 citext,
 	line5 citext,
-	postcode citext NOT NULL,
-	cc character(2) NOT NULL,
+	"town" citext,
+	"county" citext,
+	"postcode" citext NOT NULL,
+	"cc" character(2) NOT NULL,
 	"createdTimestamp" timestamp DEFAULT now(),
 	CONSTRAINT "pk_Address" PRIMARY KEY (id),
 	CONSTRAINT "fk_Address_cc" FOREIGN KEY ("cc") REFERENCES "Country" (cc) ON UPDATE CASCADE ON DELETE RESTRICT

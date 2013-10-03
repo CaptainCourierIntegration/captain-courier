@@ -62,7 +62,7 @@ class Parcel extends RM
      * Reference information for this relation
      * @var array
      */
-    protected $references = '[]';
+    protected $references = '{"Shipment.parcelId":["Shipment","parcelId",1]}';
     
     /**
      * Options Resolver

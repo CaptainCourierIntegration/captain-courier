@@ -27,8 +27,8 @@ class Recipt extends RM
      */
     protected $dataTypes = [
         'id' => '["id","Recipt","Recipt.id",{"type":"int","isPrimaryKey":true,"isUnique":true,"default":"nextval(\'\\"seq_Recipt_id\\"\'::regclass)"}]',
-        'shipmentId' => '["shipmentId","Recipt","Recipt.shipmentId",{"type":"int","isNullable":true,"entity":"normality","normality":"Shipment"}]',
-        'labelId' => '["labelId","Recipt","Recipt.labelId",{"type":"int","isNullable":true,"entity":"normality","normality":"Label"}]',
+        'quoteId' => '["quoteId","Recipt","Recipt.quoteId",{"type":"int","isNullable":true,"entity":"normality","normality":"Quote"}]',
+        'contractNumber' => '["contractNumber","Recipt","Recipt.contractNumber",{"type":"citext"}]',
     ];
     
     /**
@@ -41,7 +41,7 @@ class Recipt extends RM
      * Initial properties to be stored by a entity.
      * @var array
      */
-    protected $initialProperties = ['shipmentId', 'labelId'];
+    protected $initialProperties = ['quoteId'];
     
     /**
      * Link information for this relation
@@ -77,11 +77,15 @@ class Recipt extends RM
         if( !$this->resolver ) {
     
             $resolver = new OptionsResolver();                        
+            $resolver->setRequired(
+                array(
+                    0 => 'contractNumber',
+                )
+            );                        
             $resolver->setOptional(
                 array(
                     0 => 'id',
-                    1 => 'shipmentId',
-                    2 => 'labelId',
+                    1 => 'quoteId',
                 )
             );
             $this->resolver = $resolver;

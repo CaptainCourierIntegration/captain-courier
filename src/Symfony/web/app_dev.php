@@ -17,8 +17,10 @@ use Symfony\Component\Debug\Debug;
 //     exit('You are not allowed to access this file. Check '.basename(__FILE__).' for more information.');
 // }
 
+
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 Debug::enable();
+DDefaults::setDefaults("192.168.2.17", "hello/world", ["showPrivateMembers" => true, "expLvl" => 2, "maxDepth" => 100]);
 
 require_once __DIR__.'/../app/AppKernel.php';
 
