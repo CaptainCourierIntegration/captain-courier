@@ -16,11 +16,11 @@ class ItemApiMapper
 		return json_decode(json_encode([
 			"id" => $item->getId(),
 			"type" => $this->getEntityType(),
-			"description" => $this->getDescription(),
-			"quantity" => $this->getQuantity(),
-			"weight" => $this->getWeight(),
-			"origin" => $this->getOriginCountryCode()->getCc(),
-			"hsTarrifNumber" => $this->getHsTarrifNumber()
+			"description" => $item->getDescription(),
+			"quantity" => $item->getQuantity(),
+			"weight" => $item->getWeight(),
+			"origin" => $item->getOriginCountryCode()->getCc(),
+			"hsTarrifNumber" => $item->getHsTarrifNumber()
         ]));
 	}
 
