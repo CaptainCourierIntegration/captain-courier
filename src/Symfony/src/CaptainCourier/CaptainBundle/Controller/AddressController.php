@@ -31,19 +31,19 @@ class AddressController extends Controller
 	private $entityManager;
 	private $database;
 
-	private $addressApiMapper;
+	private $addressMapper;
 
 	public function __construct(
 		$d, 
 		$entityManager, 
 		$database,
-		$addressApiMapper
+		$addressMapper
 	)
 	{
 		$this->d = $d;
 		$this->entityManager = $entityManager;
 		$this->database = $database;
-		$this->addressApiMapper = $addressApiMapper;
+		$this->addressMapper = $addressMapper;
 
 		// $connectionSettings = new ConnectionSettings([
 		// 	"host" => "localhost",
@@ -153,7 +153,7 @@ class AddressController extends Controller
         $this->entityManager->recordManager->flush();
 
 		return new Response(
-            json_encode($this->addressApiMapper->toApiObject($address)),
+            json_encode($this->addressMapper->toApiObject($address)),
             200,
             array('content-type' => "application/json")
         );
@@ -200,7 +200,7 @@ class AddressController extends Controller
 	{
 		$address = $this->entityManager["Address"]->find($id);
 		return new Response(
-			json_encode($this->addressApiMapper->toApiObject($address)),
+			json_encode($this->addressMapper->toApiObject($address)),
 			200,
 			['content-type' => 'application/json']
 		);			

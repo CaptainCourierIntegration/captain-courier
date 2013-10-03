@@ -18,16 +18,16 @@ class ItemController extends RestController
 
 	private $d;
 
-	private $itemApiMapper;
+	private $itemMapper;
 
-	public function __construct($d, $entityManager, $database, $itemApiMapper)
+	public function __construct($d, $entityManager, $database, $itemMapper)
 	{
 		parent::__construct();
 		$this->d = $d;
 		$this->entityManager = $entityManager;
 		$this->database = $database;
 
-		$this->itemApiMapper = $itemApiMapper;
+		$this->itemMapper = $itemMapper;
 	}
 
 
@@ -70,7 +70,7 @@ class ItemController extends RestController
 		$item = $this->persist("Item", $formattedContent);
 
 		return new Response(
-			json_encode($this->itemApiMapper->toApiObject($item)),
+			json_encode($this->itemMapper->toApiObject($item)),
 			200,
 			array('content-type' => "application/json")
 		);
