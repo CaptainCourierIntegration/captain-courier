@@ -40,7 +40,7 @@ class ShipmentController extends RestController
 		$this->database = $database;
 		$this->cidr = $cidr;
 		$this->addressApiMapper = $addressApiMapper;
-        $this->parcelAPiMapper = $parcelApiMapper;
+        $this->parcelApiMapper = $parcelApiMapper;
         $this->itemApiMapper = $itemApiMapper;
 	}
 
@@ -95,27 +95,9 @@ class ShipmentController extends RestController
 			);
 		}
 
-        $parcelFormatted = [
-        	"id" => $parcel->getId(),
-        	"type" => "Parcel",
-        	"width" => $parcel->getWidth(),
-        	"height" => $parcel->getHeight(),
-        	"length" => $parcel->getLength(),
-        	"weight" => $parcel->getWeight(),
-        	"value" => $parcel->getValue()
-        ];
-
         $itemsFormatted = array_map(
         	function($item) {
-        		return [
-					"id" => $item->getId(),
-					"type" => "Item",
-					"description" => $item->getDescription(),
-					"quantity" => $item->getQuantity(),
-					"weight" => $item->getWeight(),
-					"origin" => $item->getOriginCountryCode()->getCc(),
-					"hsTarrifNumber" => $item->getHsTarrifNumber()
-				];
+                return $this->itemApiMapper->toApiObject($item);
         	},
         	$items
         );
@@ -125,7 +107,7 @@ class ShipmentController extends RestController
 			"type" => "Shipment",
 			"to" => $this->addressApiMapper->toApiObject($deliveryAddress),
 			"from" => $this->addressApiMapper->toApiObject($collectionAddress),
-			"parcel" => $parcelFormatted,
+			"parcel" => $this->parcelApiMapper->toApiObject($parcel),
 			"items" => $itemsFormatted
 		];
 
