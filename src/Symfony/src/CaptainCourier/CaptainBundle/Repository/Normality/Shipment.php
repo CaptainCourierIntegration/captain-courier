@@ -60,7 +60,7 @@ class Shipment extends RM
      * Reference information for this relation
      * @var array
      */
-    protected $references = '{"ShipmentTrackingLog.shipmentId":["ShipmentTrackingLog","shipmentId",1],"AbortStatus.shipmentId":["AbortStatus","shipmentId",1]}';
+    protected $references = '{"AbortStatus.shipmentId":["AbortStatus","shipmentId",1],"ShipmentTrackingLog.shipmentId":["ShipmentTrackingLog","shipmentId",1]}';
     
     /**
      * Options Resolver

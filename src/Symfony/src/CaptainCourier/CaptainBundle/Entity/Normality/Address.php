@@ -34,7 +34,7 @@ class Address extends Base implements SqlInterface
      * @var array
      */
     protected $data = array(
-        'id' => null, # PK; is referenced by Shipment.collectionAddressId, Shipment.deliveryAddressId
+        'id' => null, # PK; is referenced by Shipment.deliveryAddressId, Shipment.collectionAddressId
         'companyName' => null,
         'name' => null,
         'phone' => null,
@@ -233,10 +233,10 @@ class Address extends Base implements SqlInterface
                 break;
             
             case 'Shipments':
-                return $this->r()->referencesGet( $this, 'Shipment.collectionAddressId' );
+                return $this->r()->referencesGet( $this, 'Shipment.deliveryAddressId' );
             
             case 'Shipments':
-                return $this->r()->referencesGet( $this, 'Shipment.deliveryAddressId' );
+                return $this->r()->referencesGet( $this, 'Shipment.collectionAddressId' );
             
         }
         return parent::get( $key, $inputValidate, $source, $task );
@@ -337,10 +337,10 @@ class Address extends Base implements SqlInterface
                 break;
             
             case 'Shipments':
-                return StaticMethods::set_references( $this, 'Shipment.collectionAddressId', $value );
+                return StaticMethods::set_references( $this, 'Shipment.deliveryAddressId', $value );
             
             case 'Shipments':
-                return StaticMethods::set_references( $this, 'Shipment.deliveryAddressId', $value );
+                return StaticMethods::set_references( $this, 'Shipment.collectionAddressId', $value );
             
         }
         return parent::set( $key, $value, $inputValidate );

@@ -7,11 +7,11 @@
 
 
 CREATE SEQUENCE "seq_Parcel_id"
-START WITH 1
-INCREMENT BY 1
-NO MAXVALUE
-NO MINVALUE
-CACHE 1;
+    START WITH 1
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
 
 CREATE TABLE "Parcel" (
 	"id" int NOT NULL DEFAULT nextval('"seq_Parcel_id"' :: regclass),

@@ -27,14 +27,14 @@ class Shipment extends Base implements SqlInterface
      * Additional properties
      * @var array
      */
-    protected static $additionalProperties = ['ShipmentTrackingLogs', 'AbortStatuss'];
+    protected static $additionalProperties = ['AbortStatuss', 'ShipmentTrackingLogs'];
     
     /**
      * Columns defined in captain.Shipment
      * @var array
      */
     protected $data = array(
-        'id' => null, # PK; is referenced by ShipmentTrackingLog.shipmentId, AbortStatus.shipmentId
+        'id' => null, # PK; is referenced by AbortStatus.shipmentId, ShipmentTrackingLog.shipmentId
         'collectionAddressId' => null, # references Address.id
         'deliveryAddressId' => null, # references Address.id
         'parcelId' => null, # references Parcel.id
@@ -130,11 +130,11 @@ class Shipment extends Base implements SqlInterface
                 $key = 'parcelId';
                 break;
             
-            case 'ShipmentTrackingLogs':
-                return $this->r()->referencesGet( $this, 'ShipmentTrackingLog.shipmentId' );
-            
             case 'AbortStatuss':
                 return $this->r()->referencesGet( $this, 'AbortStatus.shipmentId' );
+            
+            case 'ShipmentTrackingLogs':
+                return $this->r()->referencesGet( $this, 'ShipmentTrackingLog.shipmentId' );
             
         }
         return parent::get( $key, $inputValidate, $source, $task );
@@ -285,11 +285,11 @@ class Shipment extends Base implements SqlInterface
                 $key = 'parcelId';
                 break;
             
-            case 'ShipmentTrackingLogs':
-                return StaticMethods::set_references( $this, 'ShipmentTrackingLog.shipmentId', $value );
-            
             case 'AbortStatuss':
                 return StaticMethods::set_references( $this, 'AbortStatus.shipmentId', $value );
+            
+            case 'ShipmentTrackingLogs':
+                return StaticMethods::set_references( $this, 'ShipmentTrackingLog.shipmentId', $value );
             
         }
         return parent::set( $key, $value, $inputValidate );

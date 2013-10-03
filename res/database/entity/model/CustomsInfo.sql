@@ -6,12 +6,11 @@
 */
 
 CREATE SEQUENCE "seq_CustomsInfo_id"
-START WITH 1
-INCREMENT BY 1
-NO MAXVALUE
-NO MINVALUE
-CACHE 1;
-
+	START WITH 1
+	INCREMENT BY 1
+	NO MAXVALUE
+	NO MINVALUE
+	CACHE 1;
 
 CREATE TABLE "CustomsInfo" (
 	id int NOT NULL DEFAULT nextval('"seq_CustomsInfo_id"'::regclass),
