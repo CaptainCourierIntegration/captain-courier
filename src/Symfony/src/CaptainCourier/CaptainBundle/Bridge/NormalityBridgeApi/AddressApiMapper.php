@@ -27,7 +27,7 @@ class AddressApiMapper
 			"town" => $address->getTown(),
 			"county" => $address->getCounty(),
 			"postcode" => $address->getPostcode(),
-			"cc" => $address->getCc(),
+			"cc" => $address->getCc()->getCc(),
 			"phone" => $address->getPhone()
         ]));
 	}
