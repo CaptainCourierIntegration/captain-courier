@@ -124,16 +124,6 @@ class AddressController extends Controller
         $contentString = $this->get("request")->getContent();
         $args = json_decode($contentString);
 
-        foreach (["name", "email", "line1", "town", "region", "countryCode", "postcode"] as $mandatory) {
-            if (!isset($args->$mandatory)) {
-                return new Response(
-                    json_encode(["error" => "missing field {$mandatory}"]),
-                    200,
-                    array('content-type' => "application/json")
-                );
-            }
-        }
-
         foreach (["line2", "line3", "phone"] as $optionalField) {
             if(!isset($args->$optionalField)) {
                 $args->$optionalField = null;
