@@ -58,6 +58,13 @@ services:
         scope: prototype
         arguments: [ "@registerEntityManagerFactory" ]
 
+    securityDbProvider:
+        class: CaptainCourier\CaptainBundle\Security\DbProvider
+        scope: container
+        arguments:
+            - @normalityEntityManager=
+
+
     d:
         class: Bond\D
         scope: container
