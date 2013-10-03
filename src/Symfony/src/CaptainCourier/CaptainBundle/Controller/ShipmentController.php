@@ -21,8 +21,18 @@ class ShipmentController extends RestController
 	private $d;
 	private $cidr;
 	private $addressApiMapper;
+    private $parcelApiMapper;
+    private $itemApiMapper;
 
-	public function __construct($d, $entityManager, $database, $cidr, $addressApiMapper)
+	public function __construct(
+        $d, 
+        $entityManager, 
+        $database, 
+        $cidr, 
+        $addressApiMapper, 
+        $parcelApiMapper, 
+        $itemApiMapper
+    )
 	{
 		parent::__construct();
 		$this->d = $d;
@@ -30,6 +40,8 @@ class ShipmentController extends RestController
 		$this->database = $database;
 		$this->cidr = $cidr;
 		$this->addressApiMapper = $addressApiMapper;
+        $this->parcelAPiMapper = $parcelApiMapper;
+        $this->itemApiMapper = $itemApiMapper;
 	}
 
 	// $this->entityManager->db;
@@ -83,28 +95,6 @@ class ShipmentController extends RestController
 			);
 		}
 
-		$toFormatted = [
-             "name" => $deliveryAddress->getName(),
-             "email" => $deliveryAddress->getEmail(),
-             "line1" => $deliveryAddress->getLine1(),
-             "postcode" => $deliveryAddress->getPostcode(),
-             "cc" => $deliveryAddress->getCc(),
-             "phone" => $deliveryAddress->getPhone(),
-             "line2" => $deliveryAddress->getLine2(),
-             "line3" => $deliveryAddress->getLine3()
-        ];
-
-   		$fromFormatted = [
-             "name" => $collectionAddress->getName(),
-             "email" => $collectionAddress->getEmail(),
-             "line1" => $collectionAddress->getLine1(),
-             "postcode" => $collectionAddress->getPostcode(),
-             "cc" => $collectionAddress->getCc(),
-             "phone" => $collectionAddress->getPhone(),
-             "line2" => $collectionAddress->getLine2(),
-             "line3" => $collectionAddress->getLine3()
-        ];
-
         $parcelFormatted = [
         	"id" => $parcel->getId(),
         	"type" => "Parcel",
@@ -133,8 +123,8 @@ class ShipmentController extends RestController
 		$shipmentFormatted = [
 			"id" => $shipment->getId(),
 			"type" => "Shipment",
-			"to" => $toFormatted,
-			"from" => $fromFormatted,
+			"to" => $this->addressApiMapper->toApiObject($deliveryAddress),
+			"from" => $this->addressApiMapper->toApiObject($collectionAddress),
 			"parcel" => $parcelFormatted,
 			"items" => $itemsFormatted
 		];
