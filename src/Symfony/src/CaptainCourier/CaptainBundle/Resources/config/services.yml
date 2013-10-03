@@ -85,6 +85,14 @@ services:
         class: CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi\AddressApiMapper
         scope: prototype
 
+    itemApiMapper:
+        class: CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi\ItemApiMapper
+        scope: prototype
+
+    parcelApiMapper:
+        class: CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi\ParcelApiMapper
+        scope: prototype
+
     ########### CONTROLLERS ##########
     controllerDef:
         abstract: true
@@ -117,6 +125,8 @@ services:
         arguments:
             - "@cidr"
             - "@addressApiMapper"
+            - "@parcelApiMapper"
+            - "@itemApiMapper"
 
 
 
