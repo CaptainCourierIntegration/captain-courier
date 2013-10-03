@@ -107,6 +107,8 @@ services:
         class: CaptainCourier\CaptainBundle\Controller\AddressController        
         parent: controllerDef
         scope: prototype        
+        arguments:
+            - "@addressApiMapper"
 
     itemController:
         class: CaptainCourier\CaptainBundle\Controller\ItemController
