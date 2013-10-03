@@ -4,7 +4,7 @@ namespace CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi;
 
 use Bond\Entity\Base;
 
-class ParcelMapper
+class ParcelMapper implements EntityMapper
 {
 	public function getEntityType()
 	{

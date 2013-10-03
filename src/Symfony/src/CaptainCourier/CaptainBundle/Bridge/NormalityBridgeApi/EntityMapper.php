@@ -4,7 +4,7 @@ namespace CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi;
 
 use Bond\Entity\Base;
 
-interface NormalityEntityApiMapper
+interface EntityMapper
 {
 	/** 
 	 *
