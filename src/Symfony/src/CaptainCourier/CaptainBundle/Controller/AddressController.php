@@ -153,7 +153,7 @@ class AddressController extends Controller
         $this->entityManager->recordManager->flush();
 
 		return new Response(
-            json_encode($this->addressApiMapper->getApiObject($addresses)),
+            json_encode($this->addressApiMapper->toApiObject($addresses)),
             200,
             array('content-type' => "application/json")
         );
@@ -200,7 +200,7 @@ class AddressController extends Controller
 	{
 		$address = $this->entityManager["Address"]->find($id);
 		return new Response(
-			json_encode($this->addressApiMapper->getApiObject($address)),
+			json_encode($this->addressApiMapper->toApiObject($address)),
 			200,
 			['content-type' => 'application/json']
 		);			

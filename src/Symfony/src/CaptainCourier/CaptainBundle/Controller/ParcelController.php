@@ -62,7 +62,7 @@ class ParcelController extends RestController
 		$this->entityManager->recordManager->flush();
 
 		return new Response(
-			json_encode($this->parcelApiMapper->getApiObject($parcel)),
+			json_encode($this->parcelApiMapper->toApiObject($parcel)),
 			200,
 			array('content-type' => "application/json")
 		);

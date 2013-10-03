@@ -70,7 +70,7 @@ class ItemController extends RestController
 		$item = $this->persist("Item", $formattedContent);
 
 		return new Response(
-			json_encode($this->itemApiMapper->getApiObject($item)),
+			json_encode($this->itemApiMapper->toApiObject($item)),
 			200,
 			array('content-type' => "application/json")
 		);
