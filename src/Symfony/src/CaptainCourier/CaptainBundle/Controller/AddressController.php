@@ -31,11 +31,19 @@ class AddressController extends Controller
 	private $entityManager;
 	private $database;
 
-	public function __construct($d, $entityManager, $database)
+	private $addressApiMapper;
+
+	public function __construct(
+		$d, 
+		$entityManager, 
+		$database,
+		$addressApiMapper
+	)
 	{
 		$this->d = $d;
 		$this->entityManager = $entityManager;
 		$this->database = $database;
+		$this->addressApiMapper = $addressApiMapper;
 
 		// $connectionSettings = new ConnectionSettings([
 		// 	"host" => "localhost",
@@ -124,16 +132,6 @@ class AddressController extends Controller
         $contentString = $this->get("request")->getContent();
         $args = json_decode($contentString);
 
-        foreach (["name", "email", "line1", "town", "region", "countryCode", "postcode"] as $mandatory) {
-            if (!isset($args->$mandatory)) {
-                return new Response(
-                    json_encode(["error" => "missing field {$mandatory}"]),
-                    200,
-                    array('content-type' => "application/json")
-                );
-            }
-        }
-
         foreach (["line2", "line3", "phone"] as $optionalField) {
             if(!isset($args->$optionalField)) {
                 $args->$optionalField = null;
@@ -154,12 +152,8 @@ class AddressController extends Controller
         $this->entityManager->recordManager->persist($address);
         $this->entityManager->recordManager->flush();
 
-        $jsonObject = json_decode(json_encode($address));
-        $jsonObject->type = 'Address';
-
-        $text = json_encode($jsonObject);
 		return new Response(
-            $text,
+            json_encode($this->addressApiMapper->toApiObject($address)),
             200,
             array('content-type' => "application/json")
         );
@@ -181,12 +175,9 @@ class AddressController extends Controller
 	 */
 	public function verifyAddressAction($id)
 	{
-		$sql = sprintf('SELECT * FROM "Address" WHERE id = \'%s\';', $id);
-		$query = new Query($sql);
-		$result = $this->database->query($query)->fetch(Result::TYPE_DETECT);
+		$address = $this->entityManager["Address"]->find($id);
 
-		$responseData = [];
-		if(count($result) >= 1) {
+		if($address) {
 			$responseData = ["status" => "valid"];
 		} else {
 			$responseData = ["status" => "invalid", "reason" => "no address exists with id {$id}"];
@@ -207,21 +198,9 @@ class AddressController extends Controller
 	 */
 	public function viewAddressAction($id)
 	{
-		$sql = sprintf('SELECT * FROM "Address" WHERE id = \'%s\';', $id);
-		$query = new Query($sql);
-		$result = $this->database->query($query)->fetch(Result::TYPE_DETECT);
-
-		if(count($result) >= 1) {
-			$responseData = json_decode(json_encode($result[0]));
-			$responseData->type = "Address";
-		} else {
-			$responseData = ["id" => "{$id}", "status" => "invalid", "reason" => "no address exists with id {$id}"];
-		}
-
-//		$this->d->log($responseData);
-
+		$address = $this->entityManager["Address"]->find($id);
 		return new Response(
-			json_encode($responseData),
+			json_encode($this->addressApiMapper->toApiObject($address)),
 			200,
 			['content-type' => 'application/json']
 		);			

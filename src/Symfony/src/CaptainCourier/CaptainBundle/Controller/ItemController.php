@@ -18,13 +18,18 @@ class ItemController extends RestController
 
 	private $d;
 
-	public function __construct($d, $entityManager, $database)
+	private $itemApiMapper;
+
+	public function __construct($d, $entityManager, $database, $itemApiMapper)
 	{
 		parent::__construct();
 		$this->d = $d;
 		$this->entityManager = $entityManager;
 		$this->database = $database;
+
+		$this->itemApiMapper = $itemApiMapper;
 	}
+
 
 	/**
 	 *
@@ -61,26 +66,11 @@ class ItemController extends RestController
 		if (isset($content->hsTarrifNumber)) {
 			$formattedContent["hsTarrifNumber"] = $content->hsTarrifNumber;
 		}
-		d($formattedContent);
 
-		$item = $this->entityManager->getRepository("Item")->make($formattedContent);
-		$this->entityManager->recordManager->persist($item);
-		$this->entityManager->recordManager->flush();
-
-		d($item);
-
-		$formattedResponseData = [
-			"id" => $item->getId(),
-			"type" => "Item",
-			"description" => $item->getDescription(),
-			"quantity" => $item->getQuantity(),
-			"weight" => $item->getWeight(),
-			"origin" => $item->getOriginCountryCode()->getCc(),
-			"hsTarrifNumber" => $item->getHsTarrifNumber()
-		];
+		$item = $this->persist("Item", $formattedContent);
 
 		return new Response(
-			json_encode($formattedResponseData),
+			json_encode($this->itemApiMapper->toApiObject($item)),
 			200,
 			array('content-type' => "application/json")
 		);

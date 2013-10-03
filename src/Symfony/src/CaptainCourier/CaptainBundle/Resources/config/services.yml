@@ -7,6 +7,7 @@ parameters:
 
 services:
 
+    ########### BOND ##########
     inject:
         class: Bond\Di\Inject
 
@@ -73,10 +74,26 @@ services:
             - hello/world
             - {}
 
+    ########### CIDR ##########            
     cidr:
         class: Cidr\Cidr
         scope: prototype
 
+
+    ########### ApiMapper ##########
+    addressApiMapper:
+        class: CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi\AddressApiMapper
+        scope: prototype
+
+    itemApiMapper:
+        class: CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi\ItemApiMapper
+        scope: prototype
+
+    parcelApiMapper:
+        class: CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi\ParcelApiMapper
+        scope: prototype
+
+    ########### CONTROLLERS ##########
     controllerDef:
         abstract: true
         arguments:
@@ -90,16 +107,22 @@ services:
         class: CaptainCourier\CaptainBundle\Controller\AddressController        
         parent: controllerDef
         scope: prototype        
+        arguments:
+            - "@addressApiMapper"
 
     itemController:
         class: CaptainCourier\CaptainBundle\Controller\ItemController
         parent: controllerDef
         scope: prototype  
+        arguments:
+            - "@itemApiMapper"
 
     parcelController:
         class: CaptainCourier\CaptainBundle\Controller\ParcelController
         parent: controllerDef
         scope: prototype        
+        arguments:
+            - "@parcelApiMapper"
 
     shipmentController:
         class: CaptainCourier\CaptainBundle\Controller\ShipmentController
@@ -107,3 +130,12 @@ services:
         scope: prototype
         arguments:
             - "@cidr"
+            - "@addressApiMapper"
+            - "@parcelApiMapper"
+            - "@itemApiMapper"
+
+
+
+
+
+

@@ -1,6 +1,9 @@
 
 $(document).ready(function() {
 
+	requestCreateAddress();
+	requestCreateParcel();
+	requestCreateItem();
 	requestCreateShipment();
 
 });
