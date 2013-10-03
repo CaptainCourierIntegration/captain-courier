@@ -80,6 +80,11 @@ services:
         scope: prototype
 
 
+    ########### ApiMapper ##########
+    addressApiMapper:
+        class: CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi\AddressApiMapper
+        scope: prototype
+
     ########### CONTROLLERS ##########
     controllerDef:
         abstract: true
@@ -111,11 +116,8 @@ services:
         scope: prototype
         arguments:
             - "@cidr"
+            - "@addressApiMapper"
 
-    ########### BRIDGE ##########
-    addressApiMapper:
-        class: CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi\AddressApiMapper
-        scope: prototype
 
 
 
