@@ -114,6 +114,8 @@ services:
         class: CaptainCourier\CaptainBundle\Controller\ItemController
         parent: controllerDef
         scope: prototype  
+        arguments:
+            - "@itemApiMapper"
 
     parcelController:
         class: CaptainCourier\CaptainBundle\Controller\ParcelController
