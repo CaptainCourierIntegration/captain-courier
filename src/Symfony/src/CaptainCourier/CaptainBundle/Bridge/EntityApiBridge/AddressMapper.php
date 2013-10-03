@@ -1,10 +1,10 @@
 <?php
 
-namespace CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi;
+namespace CaptainCourier\CaptainBundle\Bridge\EntityApiBridge;
 
 use Bond\Entity\Base;
 
-class AddressApiMapper
+class AddressMapper
 {
 	public function getEntityType()
 	{

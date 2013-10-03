@@ -80,17 +80,17 @@ services:
         scope: prototype
 
 
-    ########### ApiMapper ##########
-    addressApiMapper:
-        class: CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi\AddressApiMapper
+    ########### EntityMapper ##########
+    addressMapper:
+        class: CaptainCourier\CaptainBundle\Bridge\EntityApiBridge\AddressMapper
         scope: prototype
 
-    itemApiMapper:
-        class: CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi\ItemApiMapper
+    itemMapper:
+        class: CaptainCourier\CaptainBundle\Bridge\EntityApiBridge\ItemMapper
         scope: prototype
 
-    parcelApiMapper:
-        class: CaptainCourier\CaptainBundle\Bridge\NormalityBridgeApi\ParcelApiMapper
+    parcelMapper:
+        class: CaptainCourier\CaptainBundle\Bridge\EntityApiBridge\ParcelMapper
         scope: prototype
 
     ########### CONTROLLERS ##########
@@ -108,21 +108,21 @@ services:
         parent: controllerDef
         scope: prototype        
         arguments:
-            - "@addressApiMapper"
+            - "@addressMapper"
 
     itemController:
         class: CaptainCourier\CaptainBundle\Controller\ItemController
         parent: controllerDef
         scope: prototype  
         arguments:
-            - "@itemApiMapper"
+            - "@itemMapper"
 
     parcelController:
         class: CaptainCourier\CaptainBundle\Controller\ParcelController
         parent: controllerDef
         scope: prototype        
         arguments:
-            - "@parcelApiMapper"
+            - "@parcelMapper"
 
     shipmentController:
         class: CaptainCourier\CaptainBundle\Controller\ShipmentController
@@ -130,9 +130,9 @@ services:
         scope: prototype
         arguments:
             - "@cidr"
-            - "@addressApiMapper"
-            - "@parcelApiMapper"
-            - "@itemApiMapper"
+            - "@addressMapper"
+            - "@parcelMapper"
+            - "@itemMapper"
 
 
 

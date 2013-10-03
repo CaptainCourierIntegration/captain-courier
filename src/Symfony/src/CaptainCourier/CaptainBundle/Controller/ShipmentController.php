@@ -20,18 +20,18 @@ class ShipmentController extends RestController
 
 	private $d;
 	private $cidr;
-	private $addressApiMapper;
-    private $parcelApiMapper;
-    private $itemApiMapper;
+	private $addressMapper;
+    private $parcelMapper;
+    private $itemMapper;
 
 	public function __construct(
         $d, 
         $entityManager, 
         $database, 
         $cidr, 
-        $addressApiMapper, 
-        $parcelApiMapper, 
-        $itemApiMapper
+        $addressMapper, 
+        $parcelMapper, 
+        $itemMapper
     )
 	{
 		parent::__construct();
@@ -39,9 +39,9 @@ class ShipmentController extends RestController
 		$this->entityManager = $entityManager;
 		$this->database = $database;
 		$this->cidr = $cidr;
-		$this->addressApiMapper = $addressApiMapper;
-        $this->parcelApiMapper = $parcelApiMapper;
-        $this->itemApiMapper = $itemApiMapper;
+		$this->addressMapper = $addressMapper;
+        $this->parcelMapper = $parcelMapper;
+        $this->itemMapper = $itemMapper;
 	}
 
 	// $this->entityManager->db;
@@ -97,7 +97,7 @@ class ShipmentController extends RestController
 
         $itemsFormatted = array_map(
         	function($item) {
-                return $this->itemApiMapper->toApiObject($item);
+                return $this->itemMapper->toApiObject($item);
         	},
         	$items
         );
@@ -105,9 +105,9 @@ class ShipmentController extends RestController
 		$shipmentFormatted = [
 			"id" => $shipment->getId(),
 			"type" => "Shipment",
-			"to" => $this->addressApiMapper->toApiObject($deliveryAddress),
-			"from" => $this->addressApiMapper->toApiObject($collectionAddress),
-			"parcel" => $this->parcelApiMapper->toApiObject($parcel),
+			"to" => $this->addressMapper->toApiObject($deliveryAddress),
+			"from" => $this->addressMapper->toApiObject($collectionAddress),
+			"parcel" => $this->parcelMapper->toApiObject($parcel),
 			"items" => $itemsFormatted
 		];
 
